@@ -1,0 +1,16 @@
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/izg_lab_02.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/edit_cache.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/rebuild_cache.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/list_install_components.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/install.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/install/local.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/install/strip.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/SDL/CMakeFiles/SDL2main.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/SDL/CMakeFiles/SDL2-static.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/SDL/CMakeFiles/uninstall.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/SDL/CMakeFiles/edit_cache.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/SDL/CMakeFiles/rebuild_cache.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/SDL/CMakeFiles/list_install_components.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/SDL/CMakeFiles/install.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/SDL/CMakeFiles/install/local.dir
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/SDL/CMakeFiles/install/strip.dir

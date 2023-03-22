@@ -1,0 +1,1091 @@
+Performing C SOURCE FILE Test HAVE_GCC_PREFERRED_STACK_BOUNDARY failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-6BfKwC
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_61762/fast && /usr/bin/make  -f CMakeFiles/cmTC_61762.dir/build.make CMakeFiles/cmTC_61762.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-6BfKwC'
+Building C object CMakeFiles/cmTC_61762.dir/src.c.o
+/usr/bin/cc -DHAVE_GCC_PREFERRED_STACK_BOUNDARY  -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos" -mpreferred-stack-boundary=2 -o CMakeFiles/cmTC_61762.dir/src.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-6BfKwC/src.c
+cc1: error: ‘-mpreferred-stack-boundary=2’ is not between 3 and 12
+make[1]: *** [CMakeFiles/cmTC_61762.dir/build.make:78: CMakeFiles/cmTC_61762.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-6BfKwC'
+make: *** [Makefile:127: cmTC_61762/fast] Error 2
+
+
+Source file was:
+int x = 0; int main(int argc, char **argv) {}
+
+Performing C SOURCE FILE Test HAVE_ALTIVEC_H_HDR failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-7c9OzR
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_97efa/fast && /usr/bin/make  -f CMakeFiles/cmTC_97efa.dir/build.make CMakeFiles/cmTC_97efa.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-7c9OzR'
+Building C object CMakeFiles/cmTC_97efa.dir/src.c.o
+/usr/bin/cc -DHAVE_ALTIVEC_H_HDR  -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos" -maltivec -o CMakeFiles/cmTC_97efa.dir/src.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-7c9OzR/src.c
+cc: error: unrecognized command-line option ‘-maltivec’
+make[1]: *** [CMakeFiles/cmTC_97efa.dir/build.make:78: CMakeFiles/cmTC_97efa.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-7c9OzR'
+make: *** [Makefile:127: cmTC_97efa/fast] Error 2
+
+
+Source file was:
+
+          #include <altivec.h>
+          vector unsigned int vzero() {
+              return vec_splat_u32(0);
+          }
+          int main(int argc, char **argv) { }
+
+Performing C SOURCE FILE Test HAVE_ALTIVEC failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-tvJUnv
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_b852e/fast && /usr/bin/make  -f CMakeFiles/cmTC_b852e.dir/build.make CMakeFiles/cmTC_b852e.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-tvJUnv'
+Building C object CMakeFiles/cmTC_b852e.dir/src.c.o
+/usr/bin/cc -DHAVE_ALTIVEC  -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos" -maltivec -o CMakeFiles/cmTC_b852e.dir/src.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-tvJUnv/src.c
+cc: error: unrecognized command-line option ‘-maltivec’
+make[1]: *** [CMakeFiles/cmTC_b852e.dir/build.make:78: CMakeFiles/cmTC_b852e.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-tvJUnv'
+make: *** [Makefile:127: cmTC_b852e/fast] Error 2
+
+
+Source file was:
+
+          vector unsigned int vzero() {
+              return vec_splat_u32(0);
+          }
+          int main(int argc, char **argv) { }
+
+Determining if the strlcpy exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-TLE0U2
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_82096/fast && /usr/bin/make  -f CMakeFiles/cmTC_82096.dir/build.make CMakeFiles/cmTC_82096.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-TLE0U2'
+Building C object CMakeFiles/cmTC_82096.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_82096.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-TLE0U2/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-TLE0U2/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-TLE0U2/CheckSymbolExists.c:14:19: error: ‘strlcpy’ undeclared (first use in this function); did you mean ‘strncpy’?
+   14 |   return ((int*)(&strlcpy))[argc];
+      |                   ^~~~~~~
+      |                   strncpy
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-TLE0U2/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_82096.dir/build.make:78: CMakeFiles/cmTC_82096.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-TLE0U2'
+make: *** [Makefile:127: cmTC_82096/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strlcpy
+  return ((int*)(&strlcpy))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the strlcat exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-AvtWrZ
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_9584b/fast && /usr/bin/make  -f CMakeFiles/cmTC_9584b.dir/build.make CMakeFiles/cmTC_9584b.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-AvtWrZ'
+Building C object CMakeFiles/cmTC_9584b.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_9584b.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-AvtWrZ/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-AvtWrZ/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-AvtWrZ/CheckSymbolExists.c:14:19: error: ‘strlcat’ undeclared (first use in this function); did you mean ‘strncat’?
+   14 |   return ((int*)(&strlcat))[argc];
+      |                   ^~~~~~~
+      |                   strncat
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-AvtWrZ/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_9584b.dir/build.make:78: CMakeFiles/cmTC_9584b.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-AvtWrZ'
+make: *** [Makefile:127: cmTC_9584b/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strlcat
+  return ((int*)(&strlcat))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _strrev exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-j1Fn0b
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_30b74/fast && /usr/bin/make  -f CMakeFiles/cmTC_30b74.dir/build.make CMakeFiles/cmTC_30b74.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-j1Fn0b'
+Building C object CMakeFiles/cmTC_30b74.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_30b74.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-j1Fn0b/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-j1Fn0b/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-j1Fn0b/CheckSymbolExists.c:14:19: error: ‘_strrev’ undeclared (first use in this function)
+   14 |   return ((int*)(&_strrev))[argc];
+      |                   ^~~~~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-j1Fn0b/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_30b74.dir/build.make:78: CMakeFiles/cmTC_30b74.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-j1Fn0b'
+make: *** [Makefile:127: cmTC_30b74/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _strrev
+  return ((int*)(&_strrev))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _strupr exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-XN4g7o
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_4a058/fast && /usr/bin/make  -f CMakeFiles/cmTC_4a058.dir/build.make CMakeFiles/cmTC_4a058.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-XN4g7o'
+Building C object CMakeFiles/cmTC_4a058.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_4a058.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-XN4g7o/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-XN4g7o/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-XN4g7o/CheckSymbolExists.c:14:19: error: ‘_strupr’ undeclared (first use in this function)
+   14 |   return ((int*)(&_strupr))[argc];
+      |                   ^~~~~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-XN4g7o/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_4a058.dir/build.make:78: CMakeFiles/cmTC_4a058.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-XN4g7o'
+make: *** [Makefile:127: cmTC_4a058/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _strupr
+  return ((int*)(&_strupr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _strlwr exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-a2cCHC
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_94968/fast && /usr/bin/make  -f CMakeFiles/cmTC_94968.dir/build.make CMakeFiles/cmTC_94968.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-a2cCHC'
+Building C object CMakeFiles/cmTC_94968.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_94968.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-a2cCHC/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-a2cCHC/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-a2cCHC/CheckSymbolExists.c:14:19: error: ‘_strlwr’ undeclared (first use in this function)
+   14 |   return ((int*)(&_strlwr))[argc];
+      |                   ^~~~~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-a2cCHC/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_94968.dir/build.make:78: CMakeFiles/cmTC_94968.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-a2cCHC'
+make: *** [Makefile:127: cmTC_94968/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _strlwr
+  return ((int*)(&_strlwr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the itoa exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-yhZGxW
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_353bd/fast && /usr/bin/make  -f CMakeFiles/cmTC_353bd.dir/build.make CMakeFiles/cmTC_353bd.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-yhZGxW'
+Building C object CMakeFiles/cmTC_353bd.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_353bd.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-yhZGxW/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-yhZGxW/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-yhZGxW/CheckSymbolExists.c:14:19: error: ‘itoa’ undeclared (first use in this function)
+   14 |   return ((int*)(&itoa))[argc];
+      |                   ^~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-yhZGxW/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_353bd.dir/build.make:78: CMakeFiles/cmTC_353bd.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-yhZGxW'
+make: *** [Makefile:127: cmTC_353bd/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef itoa
+  return ((int*)(&itoa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _ltoa exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-zvpRzy
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_d751a/fast && /usr/bin/make  -f CMakeFiles/cmTC_d751a.dir/build.make CMakeFiles/cmTC_d751a.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-zvpRzy'
+Building C object CMakeFiles/cmTC_d751a.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_d751a.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-zvpRzy/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-zvpRzy/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-zvpRzy/CheckSymbolExists.c:14:19: error: ‘_ltoa’ undeclared (first use in this function)
+   14 |   return ((int*)(&_ltoa))[argc];
+      |                   ^~~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-zvpRzy/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_d751a.dir/build.make:78: CMakeFiles/cmTC_d751a.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-zvpRzy'
+make: *** [Makefile:127: cmTC_d751a/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _ltoa
+  return ((int*)(&_ltoa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _uitoa exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-PnARos
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_71630/fast && /usr/bin/make  -f CMakeFiles/cmTC_71630.dir/build.make CMakeFiles/cmTC_71630.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-PnARos'
+Building C object CMakeFiles/cmTC_71630.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_71630.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-PnARos/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-PnARos/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-PnARos/CheckSymbolExists.c:14:19: error: ‘_uitoa’ undeclared (first use in this function)
+   14 |   return ((int*)(&_uitoa))[argc];
+      |                   ^~~~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-PnARos/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_71630.dir/build.make:78: CMakeFiles/cmTC_71630.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-PnARos'
+make: *** [Makefile:127: cmTC_71630/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _uitoa
+  return ((int*)(&_uitoa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _ultoa exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ha9Ywu
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_79231/fast && /usr/bin/make  -f CMakeFiles/cmTC_79231.dir/build.make CMakeFiles/cmTC_79231.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ha9Ywu'
+Building C object CMakeFiles/cmTC_79231.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_79231.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ha9Ywu/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ha9Ywu/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ha9Ywu/CheckSymbolExists.c:14:19: error: ‘_ultoa’ undeclared (first use in this function)
+   14 |   return ((int*)(&_ultoa))[argc];
+      |                   ^~~~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ha9Ywu/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_79231.dir/build.make:78: CMakeFiles/cmTC_79231.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ha9Ywu'
+make: *** [Makefile:127: cmTC_79231/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _ultoa
+  return ((int*)(&_ultoa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _i64toa exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-dpPuah
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_90c7f/fast && /usr/bin/make  -f CMakeFiles/cmTC_90c7f.dir/build.make CMakeFiles/cmTC_90c7f.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-dpPuah'
+Building C object CMakeFiles/cmTC_90c7f.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_90c7f.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-dpPuah/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-dpPuah/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-dpPuah/CheckSymbolExists.c:14:19: error: ‘_i64toa’ undeclared (first use in this function)
+   14 |   return ((int*)(&_i64toa))[argc];
+      |                   ^~~~~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-dpPuah/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_90c7f.dir/build.make:78: CMakeFiles/cmTC_90c7f.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-dpPuah'
+make: *** [Makefile:127: cmTC_90c7f/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _i64toa
+  return ((int*)(&_i64toa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _ui64toa exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wJxe99
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_b7405/fast && /usr/bin/make  -f CMakeFiles/cmTC_b7405.dir/build.make CMakeFiles/cmTC_b7405.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wJxe99'
+Building C object CMakeFiles/cmTC_b7405.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_b7405.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wJxe99/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wJxe99/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wJxe99/CheckSymbolExists.c:14:19: error: ‘_ui64toa’ undeclared (first use in this function)
+   14 |   return ((int*)(&_ui64toa))[argc];
+      |                   ^~~~~~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wJxe99/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_b7405.dir/build.make:78: CMakeFiles/cmTC_b7405.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wJxe99'
+make: *** [Makefile:127: cmTC_b7405/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _ui64toa
+  return ((int*)(&_ui64toa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _stricmp exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-3lNgrY
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_ec2bb/fast && /usr/bin/make  -f CMakeFiles/cmTC_ec2bb.dir/build.make CMakeFiles/cmTC_ec2bb.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-3lNgrY'
+Building C object CMakeFiles/cmTC_ec2bb.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_ec2bb.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-3lNgrY/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-3lNgrY/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-3lNgrY/CheckSymbolExists.c:14:19: error: ‘_stricmp’ undeclared (first use in this function); did you mean ‘strncmp’?
+   14 |   return ((int*)(&_stricmp))[argc];
+      |                   ^~~~~~~~
+      |                   strncmp
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-3lNgrY/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_ec2bb.dir/build.make:78: CMakeFiles/cmTC_ec2bb.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-3lNgrY'
+make: *** [Makefile:127: cmTC_ec2bb/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _stricmp
+  return ((int*)(&_stricmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _strnicmp exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ope3Ky
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_eee1d/fast && /usr/bin/make  -f CMakeFiles/cmTC_eee1d.dir/build.make CMakeFiles/cmTC_eee1d.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ope3Ky'
+Building C object CMakeFiles/cmTC_eee1d.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_eee1d.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ope3Ky/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ope3Ky/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ope3Ky/CheckSymbolExists.c:14:19: error: ‘_strnicmp’ undeclared (first use in this function); did you mean ‘strncmp’?
+   14 |   return ((int*)(&_strnicmp))[argc];
+      |                   ^~~~~~~~~
+      |                   strncmp
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ope3Ky/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_eee1d.dir/build.make:78: CMakeFiles/cmTC_eee1d.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-Ope3Ky'
+make: *** [Makefile:127: cmTC_eee1d/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _strnicmp
+  return ((int*)(&_strnicmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _wcsdup exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-OKfYWp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_31cdc/fast && /usr/bin/make  -f CMakeFiles/cmTC_31cdc.dir/build.make CMakeFiles/cmTC_31cdc.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-OKfYWp'
+Building C object CMakeFiles/cmTC_31cdc.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_31cdc.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-OKfYWp/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-OKfYWp/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-OKfYWp/CheckSymbolExists.c:14:19: error: ‘_wcsdup’ undeclared (first use in this function); did you mean ‘wcsdup’?
+   14 |   return ((int*)(&_wcsdup))[argc];
+      |                   ^~~~~~~
+      |                   wcsdup
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-OKfYWp/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_31cdc.dir/build.make:78: CMakeFiles/cmTC_31cdc.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-OKfYWp'
+make: *** [Makefile:127: cmTC_31cdc/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _wcsdup
+  return ((int*)(&_wcsdup))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the wcslcat exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-KZnxOS
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_95d29/fast && /usr/bin/make  -f CMakeFiles/cmTC_95d29.dir/build.make CMakeFiles/cmTC_95d29.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-KZnxOS'
+Building C object CMakeFiles/cmTC_95d29.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_95d29.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-KZnxOS/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-KZnxOS/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-KZnxOS/CheckSymbolExists.c:14:19: error: ‘wcslcat’ undeclared (first use in this function); did you mean ‘wcsncat’?
+   14 |   return ((int*)(&wcslcat))[argc];
+      |                   ^~~~~~~
+      |                   wcsncat
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-KZnxOS/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_95d29.dir/build.make:78: CMakeFiles/cmTC_95d29.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-KZnxOS'
+make: *** [Makefile:127: cmTC_95d29/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcslcat
+  return ((int*)(&wcslcat))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the wcslcpy exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wmpxk9
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_4dbb6/fast && /usr/bin/make  -f CMakeFiles/cmTC_4dbb6.dir/build.make CMakeFiles/cmTC_4dbb6.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wmpxk9'
+Building C object CMakeFiles/cmTC_4dbb6.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_4dbb6.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wmpxk9/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wmpxk9/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wmpxk9/CheckSymbolExists.c:14:19: error: ‘wcslcpy’ undeclared (first use in this function); did you mean ‘wcsncpy’?
+   14 |   return ((int*)(&wcslcpy))[argc];
+      |                   ^~~~~~~
+      |                   wcsncpy
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wmpxk9/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_4dbb6.dir/build.make:78: CMakeFiles/cmTC_4dbb6.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-wmpxk9'
+make: *** [Makefile:127: cmTC_4dbb6/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcslcpy
+  return ((int*)(&wcslcpy))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _wcsicmp exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-id8nfE
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_0a246/fast && /usr/bin/make  -f CMakeFiles/cmTC_0a246.dir/build.make CMakeFiles/cmTC_0a246.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-id8nfE'
+Building C object CMakeFiles/cmTC_0a246.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_0a246.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-id8nfE/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-id8nfE/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-id8nfE/CheckSymbolExists.c:14:19: error: ‘_wcsicmp’ undeclared (first use in this function); did you mean ‘wcsncmp’?
+   14 |   return ((int*)(&_wcsicmp))[argc];
+      |                   ^~~~~~~~
+      |                   wcsncmp
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-id8nfE/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_0a246.dir/build.make:78: CMakeFiles/cmTC_0a246.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-id8nfE'
+make: *** [Makefile:127: cmTC_0a246/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _wcsicmp
+  return ((int*)(&_wcsicmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _wcsnicmp exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hfk0Kl
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_2e627/fast && /usr/bin/make  -f CMakeFiles/cmTC_2e627.dir/build.make CMakeFiles/cmTC_2e627.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hfk0Kl'
+Building C object CMakeFiles/cmTC_2e627.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_2e627.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hfk0Kl/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hfk0Kl/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hfk0Kl/CheckSymbolExists.c:14:19: error: ‘_wcsnicmp’ undeclared (first use in this function); did you mean ‘wcsncmp’?
+   14 |   return ((int*)(&_wcsnicmp))[argc];
+      |                   ^~~~~~~~~
+      |                   wcsncmp
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hfk0Kl/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_2e627.dir/build.make:78: CMakeFiles/cmTC_2e627.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hfk0Kl'
+make: *** [Makefile:127: cmTC_2e627/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _wcsnicmp
+  return ((int*)(&_wcsnicmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the fopen64 exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-VMFR0i
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_0c938/fast && /usr/bin/make  -f CMakeFiles/cmTC_0c938.dir/build.make CMakeFiles/cmTC_0c938.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-VMFR0i'
+Building C object CMakeFiles/cmTC_0c938.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_0c938.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-VMFR0i/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-VMFR0i/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-VMFR0i/CheckSymbolExists.c:14:19: error: ‘fopen64’ undeclared (first use in this function); did you mean ‘fopen’?
+   14 |   return ((int*)(&fopen64))[argc];
+      |                   ^~~~~~~
+      |                   fopen
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-VMFR0i/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_0c938.dir/build.make:78: CMakeFiles/cmTC_0c938.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-VMFR0i'
+make: *** [Makefile:127: cmTC_0c938/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fopen64
+  return ((int*)(&fopen64))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the fseeko64 exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-0VQa6s
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_d59fa/fast && /usr/bin/make  -f CMakeFiles/cmTC_d59fa.dir/build.make CMakeFiles/cmTC_d59fa.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-0VQa6s'
+Building C object CMakeFiles/cmTC_d59fa.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_d59fa.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-0VQa6s/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-0VQa6s/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-0VQa6s/CheckSymbolExists.c:14:19: error: ‘fseeko64’ undeclared (first use in this function); did you mean ‘fseeko’?
+   14 |   return ((int*)(&fseeko64))[argc];
+      |                   ^~~~~~~~
+      |                   fseeko
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-0VQa6s/CheckSymbolExists.c:14:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_d59fa.dir/build.make:78: CMakeFiles/cmTC_d59fa.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-0VQa6s'
+make: *** [Makefile:127: cmTC_d59fa/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stddef.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <float.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fseeko64
+  return ((int*)(&fseeko64))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the sysctlbyname exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-pK0UVM
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_e511c/fast && /usr/bin/make  -f CMakeFiles/cmTC_e511c.dir/build.make CMakeFiles/cmTC_e511c.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-pK0UVM'
+Building C object CMakeFiles/cmTC_e511c.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_e511c.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-pK0UVM/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-pK0UVM/CheckSymbolExists.c:3:10: fatal error: sys/sysctl.h: No such file or directory
+    3 | #include <sys/sysctl.h>
+      |          ^~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_e511c.dir/build.make:78: CMakeFiles/cmTC_e511c.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-pK0UVM'
+make: *** [Makefile:127: cmTC_e511c/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <sys/types.h>
+#include <sys/sysctl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sysctlbyname
+  return ((int*)(&sysctlbyname))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the elf_aux_info exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-r57VbZ
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_e2c42/fast && /usr/bin/make  -f CMakeFiles/cmTC_e2c42.dir/build.make CMakeFiles/cmTC_e2c42.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-r57VbZ'
+Building C object CMakeFiles/cmTC_e2c42.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_e2c42.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-r57VbZ/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-r57VbZ/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-r57VbZ/CheckSymbolExists.c:8:19: error: ‘elf_aux_info’ undeclared (first use in this function)
+    8 |   return ((int*)(&elf_aux_info))[argc];
+      |                   ^~~~~~~~~~~~
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-r57VbZ/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_e2c42.dir/build.make:78: CMakeFiles/cmTC_e2c42.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-r57VbZ'
+make: *** [Makefile:127: cmTC_e2c42/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <sys/auxv.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef elf_aux_info
+  return ((int*)(&elf_aux_info))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function iconv_open exists in the iconv failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-LmpG6W
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_b4044/fast && /usr/bin/make  -f CMakeFiles/cmTC_b4044.dir/build.make CMakeFiles/cmTC_b4044.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-LmpG6W'
+Building C object CMakeFiles/cmTC_b4044.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos" -DCHECK_FUNCTION_EXISTS=iconv_open -o CMakeFiles/cmTC_b4044.dir/CheckFunctionExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-LmpG6W/CheckFunctionExists.c
+Linking C executable cmTC_b4044
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b4044.dir/link.txt --verbose=1
+/usr/bin/cc  -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos" -DCHECK_FUNCTION_EXISTS=iconv_open -rdynamic CMakeFiles/cmTC_b4044.dir/CheckFunctionExists.c.o -o cmTC_b4044  -liconv 
+/usr/bin/ld: cannot find -liconv: No such file or directory
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_b4044.dir/build.make:99: cmTC_b4044] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-LmpG6W'
+make: *** [Makefile:127: cmTC_b4044/fast] Error 2
+
+
+
+Determining if the alloca exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-H5gVv8
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_98610/fast && /usr/bin/make  -f CMakeFiles/cmTC_98610.dir/build.make CMakeFiles/cmTC_98610.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-H5gVv8'
+Building C object CMakeFiles/cmTC_98610.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_98610.dir/CheckSymbolExists.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-H5gVv8/CheckSymbolExists.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-H5gVv8/CheckSymbolExists.c: In function ‘main’:
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-H5gVv8/CheckSymbolExists.c:8:19: error: ‘alloca’ undeclared (first use in this function); did you mean ‘valloc’?
+    8 |   return ((int*)(&alloca))[argc];
+      |                   ^~~~~~
+      |                   valloc
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-H5gVv8/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+make[1]: *** [CMakeFiles/cmTC_98610.dir/build.make:78: CMakeFiles/cmTC_98610.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-H5gVv8'
+make: *** [Makefile:127: cmTC_98610/fast] Error 2
+
+
+File CheckSymbolExists.c:
+/* */
+#include <malloc.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef alloca
+  return ((int*)(&alloca))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the include file audio/audiolib.h exists failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-qV3moG
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_4447c/fast && /usr/bin/make  -f CMakeFiles/cmTC_4447c.dir/build.make CMakeFiles/cmTC_4447c.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-qV3moG'
+Building C object CMakeFiles/cmTC_4447c.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_4447c.dir/CheckIncludeFile.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-qV3moG/CheckIncludeFile.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-qV3moG/CheckIncludeFile.c:1:10: fatal error: audio/audiolib.h: No such file or directory
+    1 | #include <audio/audiolib.h>
+      |          ^~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_4447c.dir/build.make:78: CMakeFiles/cmTC_4447c.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-qV3moG'
+make: *** [Makefile:127: cmTC_4447c/fast] Error 2
+
+
+
+Determining if the include file sndio.h exists failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xuBT5Y
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_3ae3f/fast && /usr/bin/make  -f CMakeFiles/cmTC_3ae3f.dir/build.make CMakeFiles/cmTC_3ae3f.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xuBT5Y'
+Building C object CMakeFiles/cmTC_3ae3f.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_3ae3f.dir/CheckIncludeFile.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xuBT5Y/CheckIncludeFile.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xuBT5Y/CheckIncludeFile.c:1:10: fatal error: sndio.h: No such file or directory
+    1 | #include <sndio.h>
+      |          ^~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_3ae3f.dir/build.make:78: CMakeFiles/cmTC_3ae3f.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xuBT5Y'
+make: *** [Makefile:127: cmTC_3ae3f/fast] Error 2
+
+
+
+Performing C SOURCE FILE Test HAVE_RPI failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-9PI4N5
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_22230/fast && /usr/bin/make  -f CMakeFiles/cmTC_22230.dir/build.make CMakeFiles/cmTC_22230.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-9PI4N5'
+Building C object CMakeFiles/cmTC_22230.dir/src.c.o
+/usr/bin/cc -DHAVE_RPI  -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -I/opt/vc/include/interface/vmcs_host/linux/ -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include  -L/opt/vc/lib -o CMakeFiles/cmTC_22230.dir/src.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-9PI4N5/src.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-9PI4N5/src.c:2:18: fatal error: bcm_host.h: No such file or directory
+    2 |         #include <bcm_host.h>
+      |                  ^~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_22230.dir/build.make:78: CMakeFiles/cmTC_22230.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-9PI4N5'
+make: *** [Makefile:127: cmTC_22230/fast] Error 2
+
+
+Source file was:
+
+        #include <bcm_host.h>
+        #include <EGL/eglplatform.h>
+        int main(int argc, char **argv) {
+          EGL_DISPMANX_WINDOW_T window;
+          bcm_host_init();
+        }
+
+Performing C SOURCE FILE Test HAVE_OPENGLES_V1 failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-abvUH4
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_6c876/fast && /usr/bin/make  -f CMakeFiles/cmTC_6c876.dir/build.make CMakeFiles/cmTC_6c876.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-abvUH4'
+Building C object CMakeFiles/cmTC_6c876.dir/src.c.o
+/usr/bin/cc -DHAVE_OPENGLES_V1  -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_6c876.dir/src.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-abvUH4/src.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-abvUH4/src.c:2:18: fatal error: GLES/gl.h: No such file or directory
+    2 |         #include <GLES/gl.h>
+      |                  ^~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_6c876.dir/build.make:78: CMakeFiles/cmTC_6c876.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-abvUH4'
+make: *** [Makefile:127: cmTC_6c876/fast] Error 2
+
+
+Source file was:
+
+        #include <GLES/gl.h>
+        #include <GLES/glext.h>
+        int main (int argc, char** argv) {}
+
+Performing C SOURCE FILE Test HAVE_VIVANTE_VDK failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xUUp3R
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_daac3/fast && /usr/bin/make  -f CMakeFiles/cmTC_daac3.dir/build.make CMakeFiles/cmTC_daac3.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xUUp3R'
+Building C object CMakeFiles/cmTC_daac3.dir/src.c.o
+/usr/bin/cc -DHAVE_VIVANTE_VDK  -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_daac3.dir/src.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xUUp3R/src.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xUUp3R/src.c:2:18: fatal error: gc_vdk.h: No such file or directory
+    2 |         #include <gc_vdk.h>
+      |                  ^~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_daac3.dir/build.make:78: CMakeFiles/cmTC_daac3.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-xUUp3R'
+make: *** [Makefile:127: cmTC_daac3/fast] Error 2
+
+
+Source file was:
+
+        #include <gc_vdk.h>
+        int main(int argc, char** argv) {}
+
+Performing C SOURCE FILE Test HAVE_VIVANTE_EGL_FB failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hU6dBS
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_289ba/fast && /usr/bin/make  -f CMakeFiles/cmTC_289ba.dir/build.make CMakeFiles/cmTC_289ba.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hU6dBS'
+Building C object CMakeFiles/cmTC_289ba.dir/src.c.o
+/usr/bin/cc -DHAVE_VIVANTE_EGL_FB  -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos"  -o CMakeFiles/cmTC_289ba.dir/src.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hU6dBS/src.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hU6dBS/src.c:4:18: fatal error: EGL/eglvivante.h: No such file or directory
+    4 |         #include <EGL/eglvivante.h>
+      |                  ^~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_289ba.dir/build.make:78: CMakeFiles/cmTC_289ba.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-hU6dBS'
+make: *** [Makefile:127: cmTC_289ba/fast] Error 2
+
+
+Source file was:
+
+        #define LINUX
+        #define EGL_API_FB
+        #include <EGL/eglvivante.h>
+        int main(int argc, char** argv) {}
+
+Determining if files pthread_np.h exist failed with the following output:
+Change Dir: /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-59Whvu
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_21fcc/fast && /usr/bin/make  -f CMakeFiles/cmTC_21fcc.dir/build.make CMakeFiles/cmTC_21fcc.dir/build
+make[1]: Entering directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-59Whvu'
+Building C object CMakeFiles/cmTC_21fcc.dir/HAVE_PTHREAD_NP_H.c.o
+/usr/bin/cc   -idirafter "/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/SDL/src/video/khronos" -I/usr/include/libusb-1.0  -D_REENTRANT -pthread -o CMakeFiles/cmTC_21fcc.dir/HAVE_PTHREAD_NP_H.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-59Whvu/HAVE_PTHREAD_NP_H.c
+/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-59Whvu/HAVE_PTHREAD_NP_H.c:2:10: fatal error: pthread_np.h: No such file or directory
+    2 | #include <pthread_np.h>
+      |          ^~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_21fcc.dir/build.make:78: CMakeFiles/cmTC_21fcc.dir/HAVE_PTHREAD_NP_H.c.o] Error 1
+make[1]: Leaving directory '/home/pomjak/Dropbox/VUT/4.semestr/IZG/ex2/build/CMakeFiles/CMakeScratch/TryCompile-59Whvu'
+make: *** [Makefile:127: cmTC_21fcc/fast] Error 2
+
+
+Source:
+/* */
+#include <pthread_np.h>
+
+
+int main(void){return 0;}
+

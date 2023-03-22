@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/izg_lab_01.dir/base.cpp.o CMakeFiles/izg_lab_01.dir/student.cpp.o CMakeFiles/izg_lab_01.dir/main.cpp.o -o izg_lab_01  SDL/libSDL2.a SDL/libSDL2main.a -lm -lrt -pthread 

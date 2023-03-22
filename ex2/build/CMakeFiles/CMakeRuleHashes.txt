@@ -1,0 +1,20 @@
+# Hashes of file build rules.
+bed5540b28cba9f8521b88ee9cf9ecf5 SDL/CMakeFiles/uninstall
+1cbcde41f642e047af5b438817445d34 SDL/wayland-generated-protocols/idle-inhibit-unstable-v1-client-protocol.h
+bf09c73541508a7f3e05febb291e2aa3 SDL/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c
+78ff793231f3eac65732937039d007c4 SDL/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-client-protocol.h
+bf66562d6566921c2ff817d16467bf96 SDL/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c
+d5f5a3d56725e1d7df7d31897c775fa8 SDL/wayland-generated-protocols/pointer-constraints-unstable-v1-client-protocol.h
+9c6b444c6005fb046fb611af9bb22a08 SDL/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c
+f3216328cad5dc014e807d9f8c157641 SDL/wayland-generated-protocols/relative-pointer-unstable-v1-client-protocol.h
+a7ccdde771ea34ae7600ee8381a4d943 SDL/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c
+b1c79497c7c5d38244b50b48ce915c1d SDL/wayland-generated-protocols/text-input-unstable-v3-client-protocol.h
+3a84aa9e6bbbac1e6b8fc3c592583bf8 SDL/wayland-generated-protocols/text-input-unstable-v3-protocol.c
+4559593b34cf5fc5615d82c5ae477382 SDL/wayland-generated-protocols/wayland-client-protocol.h
+55fbc98bdfa52a184e5a42f61f7002e2 SDL/wayland-generated-protocols/wayland-protocol.c
+25f4865bbc7375181452f938061a66a5 SDL/wayland-generated-protocols/xdg-activation-v1-client-protocol.h
+62830cd704f3409fbd796de22cdff08b SDL/wayland-generated-protocols/xdg-activation-v1-protocol.c
+0d2431794f2a134e2cfefc8db5d2ca9f SDL/wayland-generated-protocols/xdg-decoration-unstable-v1-client-protocol.h
+a2d24331174520ab02435fcc54d9dac6 SDL/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c
+d330232b3d6f89b0643cb6d0988b3580 SDL/wayland-generated-protocols/xdg-shell-client-protocol.h
+d0dfcf246b999eb8fb812b4bffe354d9 SDL/wayland-generated-protocols/xdg-shell-protocol.c
