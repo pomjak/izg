@@ -163,7 +163,7 @@ void pinedaTriangle(const Point &v1, const Point &v2, const Point &v3, const RGB
 	int dy1 = v2.y - v1.y;
 	int dy2 = v3.y - v2.y;
 	int dy3 = v1.y - v3.y;
-    //        (x     − xi0 ) * ∆yi  − ( y     − yi0 ) * ∆xi
+    //        (y     − yi0 ) * ∆xi  − ( x     − xi0 ) * ∆yi
     int E1 = ((min.y - v1.y) * dx1) - ((min.x - v1.x) * dy1);
     int E2 = ((min.y - v2.y) * dx2) - ((min.x - v2.x) * dy2);
     int E3 = ((min.y - v3.y) * dx3) - ((min.x - v3.x) * dy3);
@@ -173,32 +173,30 @@ void pinedaTriangle(const Point &v1, const Point &v2, const Point &v3, const RGB
     // vyuzijte hodnoty hranove funkce E (x, y) z bodu P (x, y).
 
     //////// DOPLNTE KOD /////////
-    for (int y = min.y; y <= max.y; y++)
+    for (int y = min.y; y <= max.y; ++y)
     {
-        bool isEvenRow = !((y - min.y) % 2);
+        // bool isEvenRow = !((y - min.y) % 2);
 
-        int xStart = isEvenRow ? min.x : max.x;
-        int xEnd = isEvenRow ? max.x : min.x;
-        int xStep = isEvenRow ? 1 : -1;
+        // int xStart = isEvenRow ? min.x : max.x;
+        // int xEnd = isEvenRow ? max.x : min.x;
+        // int xStep = isEvenRow ? 1 : -1;
+        int t1 = E1;
+        int t2 = E2;
+        int t3 = E3;
 
-        for (int x = xStart; isEvenRow ? x <= xEnd : x >= xEnd; x += xStep)
+        for (int x = min.x; x <= max.x; ++x)
         {
-            if (E1 >= 0 && E2 >= 0 && E3 >= 0)
+            if (t1 >= 0 && t2 >= 0 && t3 >= 0)
             {
                 putPixel(x, y, color1);
             }
 
-            bool isNotEdge = !((isEvenRow && x == max.x) || (!isEvenRow && x == min.x));
-
-            if (isNotEdge)
-            {
-                E1 += isEvenRow ? -dy1 : dy1;
-                E2 += isEvenRow ? -dy2 : dy2;
-                E3 += isEvenRow ? -dy3 : dy3;
-            }
+            t1 -= dy1;
+            t2 -= dy2;
+            t3 -= dy3;
+            
         }
         
-
         E1 += dx1;
         E2 += dx2;
         E3 += dx3;
@@ -278,34 +276,33 @@ void pinedaPolygon(const Point *points, const int size, const RGBA &color1, cons
         edges[i].deltaY = points[(i + 1) % size].y - points[i].y;
     }
 
-    // Test konvexnosti polygonu    
-
-    //////// DOPLNTE KOD /////////
     EdgeFncValues edgeFncValues(size);
     for (int i = 0; i < size; i++)
     {
         edgeFncValues[i] = ((min.y - points[i].y) * edges[i].deltaX) - ((min.x - points[i].x) * edges[i].deltaY);
     }
+    // Test konvexnosti polygonu    
+
+    //////// DOPLNTE KOD /////////
 
     // Vyplnovani: Cyklus pres vsechny body (x, y) v obdelniku (minX, minY), (maxX, maxY).
     // Pro aktualizaci hodnot hranove funkce v bode P (x +/- 1, y) nebo P (x, y +/- 1)
     // vyuzijte hodnoty hranove funkce E (x, y) z bodu P (x, y) */
 
     //////// DOPLNTE KOD /////////
-    for (int y = min.y; y <= max.y; y++)
+    for (int y = min.y; y <= max.y; ++y)
     {
-        bool isEvenRow = !((y - min.y) % 2);
+        EdgeFncValues temp(size);
 
-        int xStart = isEvenRow ? min.x : max.x;
-        int xEnd = isEvenRow ? max.x : min.x;
-        int xStep = isEvenRow ? 1 : -1;
+        temp=edgeFncValues;
+        
 
-        for (int x = xStart; isEvenRow ? x <= xEnd : x >= xEnd; x += xStep)
+        for (int x = min.x ; x <= max.x ; ++x)
         {
             bool draw = true;
             for (int i = 0; i < size; i++)
             {
-                if (edgeFncValues[i] < 0)
+                if (temp[i] < 0)
                 {
                     draw = false;
                     break;
@@ -313,21 +310,16 @@ void pinedaPolygon(const Point *points, const int size, const RGBA &color1, cons
             }
 
             if (draw)
-            {
                 putPixel(x, y, color1);
-            }
-
-            bool isNotEdge = !((isEvenRow && x == max.x) || (!isEvenRow && x == min.x));
-
-            if (isNotEdge)
+            
+            //E(x + 1; y)
+            for (int i = 0; i < size; i++)
             {
-                for (int i = 0; i < size; i++)
-                {
-                    edgeFncValues[i] += (isEvenRow) ? -edges[i].deltaY : edges[i].deltaY;
-                }
+                temp[i] -=  edges[i].deltaY;
             }
+            
         }
-
+        // E(x ; y + 1)
         for (int i = 0; i < size; i++)
         {
             edgeFncValues[i] += edges[i].deltaX;
