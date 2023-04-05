@@ -83,10 +83,10 @@ osg::Matrix rotateAroundX(double angle)
 
     //Task 3 - fill in the rotation matrix around X axis
     osg::Matrix m(
-        1,    0,     0, 0,
-        0, cosa,  sina, 0,
-        0, -sina, cosa, 0,
-        0,    0,     0, 1);
+        1, 0, 0, 0,
+        0, cosa, -sina, 0,
+        0, sina, cosa, 0,
+        0, 0, 0, 1);
 
     return m;
 }
@@ -99,10 +99,10 @@ osg::Matrix rotateAroundY(double angle)
     //Task 4 - fill in the rotation matrix around Y axis
 
     osg::Matrix m(
-        cosa , 0,  sina, 0,
-        0    , 1, 0    , 0,
-        -sina, 0,  cosa, 0,
-        0    , 0, 0    , 1);
+        cosa, 0, sina, 0,
+        0, 1, 0, 0,
+        -sina, 0, cosa, 0,
+        0, 0, 0, 1);
 
     return m;
 }
@@ -115,10 +115,10 @@ osg::Matrix rotateAroundZ(double angle)
     //Task 5 - fill in the rotation matrix around Z axis
 
     osg::Matrix m(
-        cosa ,  sina, 0, 0,
-        -sina ,  cosa , 0, 0,
-        0    ,      0, 1, 0,
-        0    ,      0, 0, 1);
+        cosa, -sina, 0, 0,
+        sina, cosa, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1);
 
     return m;
 }
@@ -133,7 +133,7 @@ double angleBetweenVectors(osg::Vec3d u, osg::Vec3d v)
     //Task 6
     //Normalize both vectors - method normalize()
     normalize(u);
-    normalize(u);
+    normalize(v);
     //Compute cosine of the angle between the vectors using the dot product - function dot
     double angle = dot(u,v);
     //Return the angle using arcus cosine - function std::acos()
