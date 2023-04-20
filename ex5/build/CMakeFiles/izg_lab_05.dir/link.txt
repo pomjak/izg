@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/izg_lab_05.dir/main.cpp.o CMakeFiles/izg_lab_05.dir/color.cpp.o CMakeFiles/izg_lab_05.dir/student.cpp.o CMakeFiles/izg_lab_05.dir/vector.cpp.o -o izg_lab_05  SDL/libSDL2.a SDL/libSDL2main.a -lm -ldbus-1 -lunwind -lunwind-generic -lrt -Wl,--no-undefined -pthread 
