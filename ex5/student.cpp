@@ -87,11 +87,10 @@ void initControlPointsDown(S_Vector** points, int offset_x, int offset_y) {
 	 * Nasledujuci volanni funkce initControlPointsUp(.) zmazte a nahradte vlastnim kodem,
 	 * ktery inicializuje ridici body tak, aby byla trajektorie spojita (C1). Muzete zkopirovat
 	 * kod funkce initControlPointsUp(.) a upravit primo souradnice bodu v kodu. 
-         * POCITEJTE S -Y SOURADNICEMI RIDICICH BODU A MENTE JEJICH X SLOŽKU!
+     * POCITEJTE S -Y SOURADNICEMI RIDICICH BODU A MENTE JEJICH X SLOŽKU!
 	 */
 	*points = vecCreateEmpty(sizeof(Point2d));
 	Point2d p;
-
 	p.x = 0;
 	p.y = 0;
 	point2d_vecPushBack(*points, p);
@@ -107,10 +106,10 @@ void initControlPointsDown(S_Vector** points, int offset_x, int offset_y) {
 	p.y = 0;
 	point2d_vecPushBack(*points, p);
 
-	p.x = 210;
+	p.x = 228.8;
 	p.y = 180;
 	point2d_vecPushBack(*points, p);
-	p.x = 350;
+	p.x = 315;
 	p.y = 180;
 	point2d_vecPushBack(*points, p);
 
@@ -156,7 +155,6 @@ void initControlPointsDown(S_Vector** points, int offset_x, int offset_y) {
 	{
 		addPoint2d(point2d_vecGetPtr(*points, i), &offset, point2d_vecGetPtr(*points, i));
 	}
-	// initControlPointsUp(points, offset_x, offset_y);
 }
 
 /**
@@ -173,27 +171,27 @@ void bezierCubic(const Point2d *P1, const Point2d *P2, const Point2d *P3, const 
 	 * Sem pridejte kod vypoctu Bezierove kubiky. Body krivky pridavejte do trajectory_points.
 	 */
 	
-	// Calculate the step size for the curve
-	const double step = 1.0 / precision;
+	//Calculate the step size for the curve
+	double step = 1.0 / precision;
 
-	// Loop through the curve and calculate points
+	// // Loop through the curve and calculate points
 	for (double t = step; t < 1.0; t += step)
 	{
-		const double t1 = 1.0 - t;
-		const double B1 = t1 * t1 * t1;
-		const double B2 = 3 * t * t1 * t1;
-		const double B3 = 3 * t * t * t1;
-		const double B4 = t * t * t;
+		double t0 = 1.0 - t ;
 
-		// Calculate new point on the curve
+		double B0 = pow(t0, 3);
+		double B1 = 3 * t * pow(t0, 2);
+		double B2 = 3 * pow(t, 2) * t0;
+		double B3 = pow(t, 3);
+
 		Point2d newPoint = {
-			P1->x * B1 + P2->x * B2 + P3->x * B3 + P4->x * B4,
-			P1->y * B1 + P2->y * B2 + P3->y * B3 + P4->y * B4,
+			P1->x * B0 + P2->x * B1 + P3->x * B2 + P4->x * B3,
+			P1->y * B0 + P2->y * B1 + P3->y * B2 + P4->y * B3,
 			1.0};
 
-		// Add the point to the trajectory
 		point2d_vecPushBack(trajectory_points, newPoint);
 	}
+	
 }
 
 /*
@@ -202,7 +200,7 @@ void bezierCubic(const Point2d *P1, const Point2d *P2, const Point2d *P3, const 
  * @param control_points ridici body krivky
  * @param trajectory_points vystupni body zakrivene trajektorie
  */
-void	bezierCubicsTrajectory(int precision, const S_Vector* control_points, S_Vector* trajectory_points) {
+void bezierCubicsTrajectory(int precision, const S_Vector* control_points, S_Vector* trajectory_points) {
 	// Toto musi byt na zacatku funkce, nemazat.
 	point2d_vecClean(trajectory_points);
 
@@ -220,18 +218,13 @@ void	bezierCubicsTrajectory(int precision, const S_Vector* control_points, S_Vec
 	 *  }
 	 * Nasledujici volani funkce getLinePoints(.) zmazte - je to jen ilustrace hranate trajektorie.
 	 */
-	point2d_vecClean(trajectory_points);
-
-	// Calculate the trajectory for each cubic Bezier curve
-	for (int i = 0; i + 3 < point2d_vecSize(control_points); i += 3)
+	
+	for (int i = 0; i+3 < point2d_vecSize(control_points); i+=3)
 	{
-		// Get the four control points for the current cubic Bezier curve
 		const Point2d *P1 = point2d_vecGetPtr(control_points, i);
 		const Point2d *P2 = point2d_vecGetPtr(control_points, i + 1);
 		const Point2d *P3 = point2d_vecGetPtr(control_points, i + 2);
 		const Point2d *P4 = point2d_vecGetPtr(control_points, i + 3);
-
-	// Calculate the trajectory for the current cubic Bezier curve
-	bezierCubic(P1, P2, P3, P4, precision, trajectory_points);
+		bezierCubic(P1, P2, P3, P4, precision, trajectory_points);
 	}
 }
