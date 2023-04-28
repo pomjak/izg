@@ -209,12 +209,12 @@ libs/TxtUtils/clean: libs/TxtUtils/CMakeFiles/TxtUtils.dir/clean
 
 # All Build rule for target.
 CMakeFiles/izgProject.dir/all: libs/BasicCamera/CMakeFiles/BasicCamera.dir/all
-CMakeFiles/izgProject.dir/all: libs/TxtUtils/CMakeFiles/TxtUtils.dir/all
+CMakeFiles/izgProject.dir/all: libs/SDL-release-2.26.3/CMakeFiles/SDL2-static.dir/all
 CMakeFiles/izgProject.dir/all: libs/Catch2-3.3.1/src/CMakeFiles/Catch2.dir/all
 CMakeFiles/izgProject.dir/all: libs/SDL-release-2.26.3/CMakeFiles/SDL2main.dir/all
-CMakeFiles/izgProject.dir/all: libs/SDL-release-2.26.3/CMakeFiles/SDL2-static.dir/all
-CMakeFiles/izgProject.dir/all: libs/MealyMachine/CMakeFiles/MealyMachine.dir/all
 CMakeFiles/izgProject.dir/all: libs/ArgumentViewer/CMakeFiles/ArgumentViewer.dir/all
+CMakeFiles/izgProject.dir/all: libs/MealyMachine/CMakeFiles/MealyMachine.dir/all
+CMakeFiles/izgProject.dir/all: libs/TxtUtils/CMakeFiles/TxtUtils.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/izgProject.dir/build.make CMakeFiles/izgProject.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/izgProject.dir/build.make CMakeFiles/izgProject.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/CMakeFiles --progress-num=75,76,77,78,79,80,81,82,83 "Built target izgProject"
@@ -292,8 +292,8 @@ libs/TxtUtils/CMakeFiles/TxtUtils.dir/clean:
 # Target rules for target libs/ArgumentViewer/CMakeFiles/ArgumentViewer.dir
 
 # All Build rule for target.
-libs/ArgumentViewer/CMakeFiles/ArgumentViewer.dir/all: libs/TxtUtils/CMakeFiles/TxtUtils.dir/all
 libs/ArgumentViewer/CMakeFiles/ArgumentViewer.dir/all: libs/MealyMachine/CMakeFiles/MealyMachine.dir/all
+libs/ArgumentViewer/CMakeFiles/ArgumentViewer.dir/all: libs/TxtUtils/CMakeFiles/TxtUtils.dir/all
 	$(MAKE) $(MAKESILENT) -f libs/ArgumentViewer/CMakeFiles/ArgumentViewer.dir/build.make libs/ArgumentViewer/CMakeFiles/ArgumentViewer.dir/depend
 	$(MAKE) $(MAKESILENT) -f libs/ArgumentViewer/CMakeFiles/ArgumentViewer.dir/build.make libs/ArgumentViewer/CMakeFiles/ArgumentViewer.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/CMakeFiles --progress-num=1,2 "Built target ArgumentViewer"

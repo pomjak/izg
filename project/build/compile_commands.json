@@ -979,12 +979,6 @@
 },
 {
   "directory": "/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3",
-  "command": "/usr/bin/cc  -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/include-config- -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/include  -idirafter \"/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/video/khronos\" -DHAVE_LINUX_VERSION_H  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -mmmx -m3dnow -msse -msse2 -msse3 -D_REENTRANT -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -I/usr/include -I/usr/include/libdrm  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=3 -std=gnu99 -o CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/main/dummy/SDL_dummy_main.c",
-  "file": "/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/main/dummy/SDL_dummy_main.c",
-  "output": "libs/SDL-release-2.26.3/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o"
-},
-{
-  "directory": "/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3",
   "command": "/usr/bin/cc -DSDL_STATIC_LIB -DUSING_GENERATED_CONFIG_H -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/include -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/include-config- -I/usr/include/libdrm -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3 -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/wayland-generated-protocols -I/usr/include/libdecor-0 -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include  -idirafter \"/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/video/khronos\" -DHAVE_LINUX_VERSION_H  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -mmmx -m3dnow -msse -msse2 -msse3 -D_REENTRANT -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -I/usr/include -I/usr/include/libdrm  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=3 -std=gnu99 -o CMakeFiles/SDL2-static.dir/src/SDL.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/SDL.c",
   "file": "/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/SDL.c",
   "output": "libs/SDL-release-2.26.3/CMakeFiles/SDL2-static.dir/src/SDL.c.o"
@@ -2356,6 +2350,12 @@
   "command": "/usr/bin/cc -DSDL_STATIC_LIB -DUSING_GENERATED_CONFIG_H -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/include -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/include-config- -I/usr/include/libdrm -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3 -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/wayland-generated-protocols -I/usr/include/libdecor-0 -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include  -idirafter \"/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/video/khronos\" -DHAVE_LINUX_VERSION_H  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -mmmx -m3dnow -msse -msse2 -msse3 -D_REENTRANT -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -I/usr/include -I/usr/include/libdrm  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=3 -std=gnu99 -o CMakeFiles/SDL2-static.dir/src/sensor/dummy/SDL_dummysensor.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/sensor/dummy/SDL_dummysensor.c",
   "file": "/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/sensor/dummy/SDL_dummysensor.c",
   "output": "libs/SDL-release-2.26.3/CMakeFiles/SDL2-static.dir/src/sensor/dummy/SDL_dummysensor.c.o"
+},
+{
+  "directory": "/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3",
+  "command": "/usr/bin/cc  -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/include-config- -I/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3/include  -idirafter \"/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/video/khronos\" -DHAVE_LINUX_VERSION_H  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -mmmx -m3dnow -msse -msse2 -msse3 -D_REENTRANT -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -I/usr/include -I/usr/include/libdrm  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=3 -std=gnu99 -o CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o -c /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/main/dummy/SDL_dummy_main.c",
+  "file": "/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/SDL-release-2.26.3/src/main/dummy/SDL_dummy_main.c",
+  "output": "libs/SDL-release-2.26.3/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o"
 },
 {
   "directory": "/home/pomjak/Dropbox/VUT/4.semestr/IZG/project/build/libs/SDL-release-2.26.3",
