@@ -2,3 +2,5 @@
 .vscode/
 *.exe
 *.bin
+project/build/izgProject
+*.o

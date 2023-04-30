@@ -26,20 +26,35 @@ void clear(GPUMemory &mem, ClearCommand cmd)
 			mem.framebuffer.depth[i] = (cmd.depth);
 		}
 	}
+}
+
+void runVertexAssembly(InVertex in, VertexArray vao, VertexShader vs)
+{
+	// computeVertexID();
+	// readAttributes();
+}
+
+void draw(GPUMemory&mem,DrawCommand cmd, uint32_t draw_id)
+{
+	VertexShader vs = mem.programs[cmd.programID].vertexShader;
+	for (uint32_t n = 0; n < cmd.nofVertices; ++n)
+	{
+		InVertex inVertex;
+		OutVertex outVertex;
+		inVertex.gl_VertexID = n;
+		inVertex.gl_DrawID = draw_id;
+		runVertexAssembly(inVertex, cmd.vao, vs);
+		ShaderInterface si;
+		vs(outVertex, inVertex, si);
+	}
 
 }
 
   //! [gpu_execute]
 	void gpu_execute(GPUMemory & mem, CommandBuffer & cb)
 	{
-		// (void)mem;
-		// (void)cb;
-    	/// todo Tato funkce reprezentuje funkcionalitu grafické karty.<br>
-    	/// Měla by umět zpracovat command buffer, čistit framebuffer a kresli.<br>
-    	/// mem obsahuje paměť grafické karty.
-    	/// cb obsahuje command buffer pro zpracování.
-    	/// Bližší informace jsou uvedeny na hlavní stránce dokumentace.
-		for (uint32_t i = 0; i < cb.nofCommands; ++i)
+		uint32_t draw_id_gpu = 0;
+		for (uint32_t i = 0 ; i < cb.nofCommands; ++i)
 		{
 			CommandType type = cb.commands[i].type;
 			CommandData data = cb.commands[i].data;
@@ -50,15 +65,8 @@ void clear(GPUMemory &mem, ClearCommand cmd)
 			}
 			if (type == CommandType::DRAW)
 			{
-				DrawCommand cmd = data.drawCommand;
-				VertexShader vs = mem.programs[cmd.programID].vertexShader;
-				for (uint32_t n = 0; n < cmd.nofVertices; ++n)
-				{
-					InVertex inVertex;
-					OutVertex outVertex;
-					ShaderInterface si;
-					vs(outVertex, inVertex, si);
-				}
+				draw(mem, data.drawCommand, draw_id_gpu);
+				draw_id_gpu++;
 			}
 		}
 	}
