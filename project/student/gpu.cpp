@@ -28,11 +28,29 @@ void clear(GPUMemory &mem, ClearCommand cmd)
 	}
 }
 
-void runVertexAssembly(InVertex in, VertexArray vao, VertexShader vs)
+uint32_t computeVertexID(GPUMemory &mem, VertexArray const &vao, uint32_t shaderInvocation)
 {
-	// computeVertexID();
-	// readAttributes();
+	if (vao.indexBufferID < 0)
+		return shaderInvocation;
+
+	if (vao.indexType == IndexType::UINT32)
+	{
+		uint32_t *ind = (uint32_t *)(mem.buffers[vao.indexBufferID].data)+ vao.indexOffset;
+		return ind[shaderInvocation];
+	}
+	if (vao.indexType == IndexType::UINT16)
+	{
+		uint16_t *ind = (uint16_t *)(mem.buffers[vao.indexBufferID].data) + vao.indexOffset;
+		return ind[shaderInvocation];
+	}
+	if (vao.indexType == IndexType::UINT8)
+	{
+		uint8_t *ind = (uint8_t *)(mem.buffers[vao.indexBufferID].data) + vao.indexOffset;
+		return ind[shaderInvocation];
+	}
+	return 0;
 }
+
 
 void draw(GPUMemory&mem,DrawCommand cmd, uint32_t draw_id)
 {
@@ -41,9 +59,9 @@ void draw(GPUMemory&mem,DrawCommand cmd, uint32_t draw_id)
 	{
 		InVertex inVertex;
 		OutVertex outVertex;
-		inVertex.gl_VertexID = n;
+		inVertex.gl_VertexID = computeVertexID(mem,cmd.vao,n);
 		inVertex.gl_DrawID = draw_id;
-		runVertexAssembly(inVertex, cmd.vao, vs);
+		inVertex.attributes = getAttr();
 		ShaderInterface si;
 		vs(outVertex, inVertex, si);
 	}
