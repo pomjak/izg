@@ -6183,6 +6183,12 @@ CMakeFiles/izgProject.dir/framework/application.cpp.o: /home/pomjak/Dropbox/VUT/
   /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/libs/BasicCamera/src/BasicCamera/PerspectiveCamera.h \
   /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/student/gpu.hpp \
   /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/student/fwd.hpp \
+  /usr/include/stdio.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/stdio_lim.h \
   /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/framework/framebuffer.hpp \
   /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/framework/window.hpp \
   /usr/include/c++/12.2.1/functional \
@@ -6212,12 +6218,6 @@ CMakeFiles/izgProject.dir/framework/application.cpp.o: /home/pomjak/Dropbox/VUT/
   libs/SDL-release-2.26.3/include/SDL_platform.h \
   libs/SDL-release-2.26.3/include/begin_code.h \
   libs/SDL-release-2.26.3/include/close_code.h \
-  /usr/include/stdio.h \
-  /usr/include/bits/types/__fpos_t.h \
-  /usr/include/bits/types/__fpos64_t.h \
-  /usr/include/bits/types/struct_FILE.h \
-  /usr/include/bits/types/cookie_io_functions_t.h \
-  /usr/include/bits/stdio_lim.h \
   /usr/include/c++/12.2.1/stdlib.h \
   /usr/include/inttypes.h \
   /usr/include/ctype.h \
@@ -9854,7 +9854,17 @@ CMakeFiles/izgProject.dir/student/drawModel.cpp.o: /home/pomjak/Dropbox/VUT/4.se
   /usr/include/c++/12.2.1/backward/binders.h \
   /usr/include/c++/12.2.1/bits/range_access.h \
   /usr/include/c++/12.2.1/bits/vector.tcc \
-  /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/student/gpu.hpp
+  /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/student/gpu.hpp \
+  /usr/include/stdio.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stdarg.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/stdio_lim.h
 
 CMakeFiles/izgProject.dir/student/gpu.cpp.o: /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/student/gpu.cpp \
   /usr/include/stdc-predef.h \
@@ -10136,7 +10146,17 @@ CMakeFiles/izgProject.dir/student/gpu.cpp.o: /home/pomjak/Dropbox/VUT/4.semestr/
   /usr/include/c++/12.2.1/bits/stl_function.h \
   /usr/include/c++/12.2.1/backward/binders.h \
   /usr/include/c++/12.2.1/bits/range_access.h \
-  /usr/include/c++/12.2.1/bits/vector.tcc
+  /usr/include/c++/12.2.1/bits/vector.tcc \
+  /usr/include/stdio.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include/stdarg.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/stdio_lim.h
 
 CMakeFiles/izgProject.dir/tests/clippingTests.cpp.o: /home/pomjak/Dropbox/VUT/4.semestr/IZG/project/tests/clippingTests.cpp \
   /usr/include/stdc-predef.h \

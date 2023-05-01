@@ -7,6 +7,7 @@
 #pragma once
 
 #include <student/fwd.hpp>
+#include <stdio.h>
 
 /**
  * @brief function that executes work stored in command buffer on the gpu memory.
@@ -17,6 +18,6 @@
  * @param mem gpu memory
  * @param cb command buffer - packaged of work sent to the gpu
  */
-void gpu_execute(GPUMemory&mem,CommandBuffer&cb);
+void gpu_execute(GPUMemory &mem, CommandBuffer &cb);
 
-glm::vec4 read_texture(Texture const&texture,glm::vec2 uv);
+glm::vec4 read_texture(Texture const &texture, glm::vec2 uv);
