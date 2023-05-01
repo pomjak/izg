@@ -28,27 +28,38 @@ void clear(GPUMemory &mem, ClearCommand cmd)
 	}
 }
 
-uint32_t computeVertexID(GPUMemory &mem, VertexArray const &vao, uint32_t shaderInvocation)
+void computeVertexID(GPUMemory &mem, VertexArray &vao, uint32_t *shaderInvocation, InVertex &inVertex)
 {
 	if (vao.indexBufferID < 0)
-		return shaderInvocation;
+	{
+		inVertex.gl_VertexID = *shaderInvocation;
+		return;
+	}
+	uint32_t index = *shaderInvocation;
 
-	if (vao.indexType == IndexType::UINT32)
+	switch (vao.indexType)
 	{
-		uint32_t *ind = (uint32_t *)(mem.buffers[vao.indexBufferID].data) + vao.indexOffset / sizeof(uint32_t);
-		return ind[shaderInvocation];
+	case IndexType::UINT32:
+		uint32_t *ind_32;
+		ind_32 = (uint32_t *)(mem.buffers[vao.indexBufferID].data) + (vao.indexOffset / sizeof(uint32_t));
+		inVertex.gl_VertexID = ind_32[index];
+		break;
+
+	case IndexType::UINT16:
+		uint16_t *ind_16;
+		ind_16 = (uint16_t *)(mem.buffers[vao.indexBufferID].data) + (vao.indexOffset / sizeof(uint16_t));
+		inVertex.gl_VertexID = ind_16[index];
+		break;
+
+	case IndexType::UINT8:
+		uint8_t *ind_8;
+		ind_8 = (uint8_t *)(mem.buffers[vao.indexBufferID].data) + (vao.indexOffset / sizeof(uint8_t));
+		inVertex.gl_VertexID = ind_8[index];
+		break;
+
+	default:
+		break;
 	}
-	if (vao.indexType == IndexType::UINT16)
-	{
-		uint16_t *ind = (uint16_t *)(mem.buffers[vao.indexBufferID].data) + vao.indexOffset / sizeof(uint16_t);
-		return ind[shaderInvocation];
-	}
-	if (vao.indexType == IndexType::UINT8)
-	{
-		uint8_t *ind = (uint8_t *)(mem.buffers[vao.indexBufferID].data) + vao.indexOffset / sizeof(uint8_t);
-		return ind[shaderInvocation];
-	}
-	return 0;
 }
 
 void getAttr(GPUMemory &mem, VertexAttrib *vertexAttrib, InVertex &inVertex)
@@ -102,6 +113,38 @@ void getAttr(GPUMemory &mem, VertexAttrib *vertexAttrib, InVertex &inVertex)
 	}
 }
 
+void runVertexAssembly(GPUMemory &mem, VertexArray &vao, InVertex &inVertex, uint32_t *shaderInvocation, uint32_t *draw_id)
+{
+	inVertex.gl_DrawID = *draw_id;
+
+	computeVertexID(mem, vao, shaderInvocation, inVertex);
+	getAttr(mem, vao.vertexAttrib, inVertex);
+}
+
+// void runPrimitiveAssembly(primitive, VertexArray vao, t, Program prg)
+// {
+// 	for (every vertex v in triangle)
+// 	{
+// 		InVertex inVertex;
+// 		runVertexAssembly(inVertex, vao, t + v);
+// 		prg.vertexShader(primitive.vertex, inVertex, prg.uniforms);
+// 	}
+// }
+
+// void rasterizeTriangle(frame, primitive, prg)
+// {
+// 	for (pixels in frame)
+// 	{
+// 		if (pixels in primitive)
+// 		{
+// 			InFragment inFragment;
+// 			createFragment(inFragment, primitive, barycentrics, pixelCoord, prg);
+// 			OutFragment outFragment;
+// 			prg.fragmentShader(outFragment, inFragment, uniforms);
+// 		}
+// 	}
+// }
+
 void draw(GPUMemory &mem, DrawCommand cmd, uint32_t draw_id)
 {
 	VertexShader vs = mem.programs[cmd.programID].vertexShader;
@@ -110,9 +153,7 @@ void draw(GPUMemory &mem, DrawCommand cmd, uint32_t draw_id)
 		InVertex inVertex;
 		OutVertex outVertex;
 
-		inVertex.gl_VertexID = computeVertexID(mem, cmd.vao, n);
-		inVertex.gl_DrawID = draw_id;
-		getAttr(mem, cmd.vao.vertexAttrib, inVertex);
+		runVertexAssembly(mem, cmd.vao, inVertex, &n, &draw_id);
 
 		ShaderInterface si;
 		vs(outVertex, inVertex, si);
