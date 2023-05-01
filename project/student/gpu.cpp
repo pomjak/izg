@@ -35,26 +35,22 @@ void computeVertexID(GPUMemory &mem, VertexArray &vao, uint32_t *shaderInvocatio
 		inVertex.gl_VertexID = *shaderInvocation;
 		return;
 	}
-	uint32_t index = *shaderInvocation;
+	const uint32_t index = *shaderInvocation;
+	const Buffer &indexBuffer = mem.buffers[vao.indexBufferID];
+	const uint8_t *indexData = static_cast<const uint8_t *>(indexBuffer.data) + (vao.indexOffset / sizeof(uint8_t));
 
 	switch (vao.indexType)
 	{
 	case IndexType::UINT32:
-		uint32_t *ind_32;
-		ind_32 = (uint32_t *)(mem.buffers[vao.indexBufferID].data) + (vao.indexOffset / sizeof(uint32_t));
-		inVertex.gl_VertexID = ind_32[index];
+		inVertex.gl_VertexID = *reinterpret_cast<const uint32_t *>(indexData + index * sizeof(uint32_t));
 		break;
 
 	case IndexType::UINT16:
-		uint16_t *ind_16;
-		ind_16 = (uint16_t *)(mem.buffers[vao.indexBufferID].data) + (vao.indexOffset / sizeof(uint16_t));
-		inVertex.gl_VertexID = ind_16[index];
+		inVertex.gl_VertexID = *reinterpret_cast<const uint16_t *>(indexData + index * sizeof(uint16_t));
 		break;
 
 	case IndexType::UINT8:
-		uint8_t *ind_8;
-		ind_8 = (uint8_t *)(mem.buffers[vao.indexBufferID].data) + (vao.indexOffset / sizeof(uint8_t));
-		inVertex.gl_VertexID = ind_8[index];
+		inVertex.gl_VertexID = *reinterpret_cast<const uint8_t *>(indexData + index * sizeof(uint8_t));
 		break;
 
 	default:
@@ -66,48 +62,46 @@ void getAttr(GPUMemory &mem, VertexAttrib *vertexAttrib, InVertex &inVertex)
 {
 	for (uint32_t i = 0; i < maxAttributes; i++)
 	{
-		if (vertexAttrib[i].type == AttributeType::EMPTY)
+		const auto &attrib = vertexAttrib[i];
+		if (attrib.type == AttributeType::EMPTY)
 			continue;
 
-		uint8_t *IndexBuffer = (uint8_t *)(mem.buffers[vertexAttrib[i].bufferID].data);
+		const auto &buffer = mem.buffers[attrib.bufferID];
+		const uint8_t *bufferData = static_cast<const uint8_t *>(buffer.data);
+		const uint8_t *attrData = bufferData + (attrib.offset / sizeof(uint8_t)) + (attrib.stride / sizeof(uint8_t)) * inVertex.gl_VertexID;
 
-		uint8_t offset = (vertexAttrib[i].offset / sizeof(uint8_t));
-		uint8_t stride = (vertexAttrib[i].stride / sizeof(uint8_t));
-
-		uint8_t *attr_buffer = (IndexBuffer + offset + (stride * inVertex.gl_VertexID));
-
-		switch (vertexAttrib[i].type)
+		switch (attrib.type)
 		{
 		case AttributeType::FLOAT:
-			inVertex.attributes[i].v1 = *(float *)attr_buffer;
+			inVertex.attributes[i].v1 = *reinterpret_cast<const float *>(attrData);
 			break;
 
 		case AttributeType::VEC2:
-			inVertex.attributes[i].v2 = *(glm::vec2 *)attr_buffer;
+			inVertex.attributes[i].v2 = *reinterpret_cast<const glm::vec2 *>(attrData);
 			break;
 
 		case AttributeType::VEC3:
-			inVertex.attributes[i].v3 = *(glm::vec3 *)attr_buffer;
+			inVertex.attributes[i].v3 = *reinterpret_cast<const glm::vec3 *>(attrData);
 			break;
 
 		case AttributeType::VEC4:
-			inVertex.attributes[i].v4 = *(glm::vec4 *)attr_buffer;
+			inVertex.attributes[i].v4 = *reinterpret_cast<const glm::vec4 *>(attrData);
 			break;
 
 		case AttributeType::UINT:
-			inVertex.attributes[i].u1 = *(uint32_t *)attr_buffer;
+			inVertex.attributes[i].u1 = *reinterpret_cast<const uint32_t *>(attrData);
 			break;
 
 		case AttributeType::UVEC2:
-			inVertex.attributes[i].u2 = *(glm::uvec2 *)attr_buffer;
+			inVertex.attributes[i].u2 = *reinterpret_cast<const glm::uvec2 *>(attrData);
 			break;
 
 		case AttributeType::UVEC3:
-			inVertex.attributes[i].u3 = *(glm::uvec3 *)attr_buffer;
+			inVertex.attributes[i].u3 = *reinterpret_cast<const glm::uvec3 *>(attrData);
 			break;
 
 		case AttributeType::UVEC4:
-			inVertex.attributes[i].u4 = *(glm::uvec4 *)attr_buffer;
+			inVertex.attributes[i].u4 = *reinterpret_cast<const glm::uvec4 *>(attrData);
 			break;
 		}
 	}
