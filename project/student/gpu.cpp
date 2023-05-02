@@ -107,51 +107,77 @@ void getAttr(GPUMemory &mem, VertexAttrib *vertexAttrib, InVertex &inVertex)
 	}
 }
 
-void runVertexAssembly(GPUMemory &mem, VertexArray &vao, InVertex &inVertex, uint32_t *shaderInvocation, uint32_t *draw_id)
+void VertexAssembly(GPUMemory &mem, VertexArray &vao, InVertex &inVertex, uint32_t *shaderInvocation, uint32_t *draw_id)
 {
 	inVertex.gl_DrawID = *draw_id;
-
 	computeVertexID(mem, vao, shaderInvocation, inVertex);
 	getAttr(mem, vao.vertexAttrib, inVertex);
 }
 
-// void runPrimitiveAssembly(primitive, VertexArray vao, t, Program prg)
-// {
-// 	for (every vertex v in triangle)
-// 	{
-// 		InVertex inVertex;
-// 		runVertexAssembly(inVertex, vao, t + v);
-// 		prg.vertexShader(primitive.vertex, inVertex, prg.uniforms);
-// 	}
-// }
+void TriangleAssembly(GPUMemory &mem, Triangle &triangle, Program const &prg, VertexArray &vao, uint32_t tId)
+{
+	for (int i = 0; i < 3; ++i)
+	{ // smyčka přes vrcholy trojúhelníku
+		InVertex inVertex;
+		uint32_t correct_idx = tId + i;
+		uint32_t smh = 0;
+		ShaderInterface si;
 
-// void rasterizeTriangle(frame, primitive, prg)
-// {
-// 	for (pixels in frame)
-// 	{
-// 		if (pixels in primitive)
-// 		{
-// 			InFragment inFragment;
-// 			createFragment(inFragment, primitive, barycentrics, pixelCoord, prg);
-// 			OutFragment outFragment;
-// 			prg.fragmentShader(outFragment, inFragment, uniforms);
-// 		}
-// 	}
-// }
+		VertexAssembly(mem, vao, inVertex, &correct_idx, &smh);
+		prg.vertexShader(triangle.points[i], inVertex, si);
+	}
+}
+
+void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, bool backFaceCulling)
+{
+
+	// spočítat hranice, trojúhelníka
+	//
+	if (!backFaceCulling)
+	{
+		// pokud je vypnuty back face culling, zobrazují se i odvracene trojúhelníky
+		// prohodí se, co je uvnitř a venku
+	}
+	for (;;) // smyčka přes pixely
+		for (;;)
+		{
+			if (true) // pixel in triangle
+			{
+				InFragment inFragment;
+				OutFragment outFragment;
+				ShaderInterface si;
+				prg.fragmentShader(outFragment, inFragment, si);
+			}
+		}
+}
 
 void draw(GPUMemory &mem, DrawCommand cmd, uint32_t draw_id)
 {
-	VertexShader vs = mem.programs[cmd.programID].vertexShader;
+	Program prg = mem.programs[cmd.programID];
+	VertexShader vs = prg.vertexShader;
+
 	for (uint32_t n = 0; n < cmd.nofVertices; ++n)
 	{
 		InVertex inVertex;
 		OutVertex outVertex;
 
-		runVertexAssembly(mem, cmd.vao, inVertex, &n, &draw_id);
+		VertexAssembly(mem, cmd.vao, inVertex, &n, &draw_id);
 
 		ShaderInterface si;
 		vs(outVertex, inVertex, si);
 	}
+
+	// for (uint32_t n = 0; n < cmd.nofVertices / 3; ++n)
+	// { // smyčka přeš trojúhelníky
+	// 	Triangle triangle;
+	// 	TriangleAssembly(mem, triangle, prg, cmd.vao, n);
+
+	// 	// perspectiveDivision(triangle);
+
+	// 	// viewportTransformation(triangle, mem.framebuffer.width, mem.framebuffer.height);
+
+	// 	rasterize(mem.framebuffer, triangle, prg, cmd.backfaceCulling);
+	// }
 }
 
 //! [gpu_execute]

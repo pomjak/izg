@@ -8,6 +8,10 @@
 
 #include <student/fwd.hpp>
 #include <stdio.h>
+struct Triangle
+{
+    OutVertex points[3];
+};
 
 /**
  * @brief function that executes work stored in command buffer on the gpu memory.
