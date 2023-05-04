@@ -114,41 +114,21 @@ void VertexAssembly(GPUMemory &mem, VertexArray &vao, InVertex &inVertex, uint32
 	getAttr(mem, vao.vertexAttrib, inVertex);
 }
 
-void TriangleAssembly(GPUMemory &mem, Triangle &triangle, Program const &prg, VertexArray &vao, uint32_t tId)
+void TriangleAssembly(GPUMemory &mem, Triangle &triangle, Program const &prg, VertexArray &vao, ShaderInterface si, uint32_t tId, uint32_t draw_id)
 {
-	for (int i = 0; i < 3; ++i)
-	{ // smyčka přes vrcholy trojúhelníku
-		InVertex inVertex;
-		uint32_t correct_idx = tId + i;
-		uint32_t smh = 0;
-		ShaderInterface si;
+	VertexShader vs = prg.vertexShader;
 
-		VertexAssembly(mem, vao, inVertex, &correct_idx, &smh);
-		prg.vertexShader(triangle.points[i], inVertex, si);
-	}
-}
-
-void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, bool backFaceCulling)
-{
-
-	// spočítat hranice, trojúhelníka
-	//
-	if (!backFaceCulling)
+	for (uint32_t i = 0; i < 3; ++i)
 	{
-		// pokud je vypnuty back face culling, zobrazují se i odvracene trojúhelníky
-		// prohodí se, co je uvnitř a venku
+		InVertex inVertex;
+		OutVertex outVertex;
+
+		uint32_t correctId = i + tId * 3;
+
+		VertexAssembly(mem, vao, inVertex, &correctId, &draw_id);
+
+		vs(triangle.points[i], inVertex, si);
 	}
-	for (;;) // smyčka přes pixely
-		for (;;)
-		{
-			if (true) // pixel in triangle
-			{
-				InFragment inFragment;
-				OutFragment outFragment;
-				ShaderInterface si;
-				prg.fragmentShader(outFragment, inFragment, si);
-			}
-		}
 }
 
 void perspectiveDivision(Triangle &triangle)
@@ -161,7 +141,7 @@ void perspectiveDivision(Triangle &triangle)
 	}
 }
 
-void viewportTransformation(Triangle &triangle,uint32_t width, uint32_t height)
+void viewportTransformation(Triangle &triangle, uint32_t width, uint32_t height)
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -175,34 +155,48 @@ void viewportTransformation(Triangle &triangle,uint32_t width, uint32_t height)
 		triangle.points[i].gl_Position.y *= height;
 	}
 }
+void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, ShaderInterface si, bool backFaceCulling)
+{
+
+	// spočítat hranice, trojúhelníka
+	//
+	if (!backFaceCulling)
+	{
+		// pokud je vypnuty back face culling, zobrazují se i odvracene trojúhelníky
+		// prohodí se, co je uvnitř a venku
+	}
+	for (uint32_t w = 0; w < frame.width; ++w) // smyčka přes pixely
+		for (uint32_t h = 0; h < frame.height; ++h)
+		{
+			if (true) // pixel in triangle
+			{
+				InFragment inFragment;
+				OutFragment outFragment;
+				prg.fragmentShader(outFragment, inFragment, si);
+			}
+		}
+}
 
 void draw(GPUMemory &mem, DrawCommand cmd, uint32_t draw_id)
 {
+	ShaderInterface si;
 	Program prg = mem.programs[cmd.programID];
-	VertexShader vs = prg.vertexShader;
+	si.textures = &mem.textures[cmd.programID];
+	si.uniforms = &mem.uniforms[cmd.programID];
 
-	for (uint32_t n = 0; n < cmd.nofVertices; ++n)
+	for (uint32_t n = 0; n < cmd.nofVertices / 3; ++n)
 	{
-		InVertex inVertex;
-		OutVertex outVertex;
 
-		VertexAssembly(mem, cmd.vao, inVertex, &n, &draw_id);
+		Triangle triangle;
 
-		ShaderInterface si;
-		vs(outVertex, inVertex, si);
+		TriangleAssembly(mem, triangle, prg, cmd.vao, si, n, draw_id);
+
+		perspectiveDivision(triangle);
+
+		viewportTransformation(triangle, mem.framebuffer.width, mem.framebuffer.height);
+
+		rasterize(mem.framebuffer, triangle, prg, si, cmd.backfaceCulling);
 	}
-
-	// for (uint32_t n = 0; n < cmd.nofVertices / 3; ++n)
-	// { // smyčka přeš trojúhelníky
-	// 	Triangle triangle;
-	// 	TriangleAssembly(mem, triangle, prg, cmd.vao, n);
-
-	// 	perspectiveDivision(triangle);
-
-	// 	viewportTransformation(triangle, mem.framebuffer.width, mem.framebuffer.height);
-
-	// 	rasterize(mem.framebuffer, triangle, prg, cmd.backfaceCulling);
-	// }
 }
 
 //! [gpu_execute]
