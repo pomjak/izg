@@ -151,6 +151,31 @@ void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, bool 
 		}
 }
 
+void perspectiveDivision(Triangle &triangle)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		triangle.points[i].gl_Position.x /= triangle.points[i].gl_Position.w;
+		triangle.points[i].gl_Position.y /= triangle.points[i].gl_Position.w;
+		triangle.points[i].gl_Position.z /= triangle.points[i].gl_Position.w;
+	}
+}
+
+void viewportTransformation(Triangle &triangle,uint32_t width, uint32_t height)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		triangle.points[i].gl_Position.x += 1.f;
+		triangle.points[i].gl_Position.y += 1.f;
+
+		triangle.points[i].gl_Position.x /= 2.f;
+		triangle.points[i].gl_Position.y /= 2.f;
+
+		triangle.points[i].gl_Position.x *= width;
+		triangle.points[i].gl_Position.y *= height;
+	}
+}
+
 void draw(GPUMemory &mem, DrawCommand cmd, uint32_t draw_id)
 {
 	Program prg = mem.programs[cmd.programID];
@@ -172,9 +197,9 @@ void draw(GPUMemory &mem, DrawCommand cmd, uint32_t draw_id)
 	// 	Triangle triangle;
 	// 	TriangleAssembly(mem, triangle, prg, cmd.vao, n);
 
-	// 	// perspectiveDivision(triangle);
+	// 	perspectiveDivision(triangle);
 
-	// 	// viewportTransformation(triangle, mem.framebuffer.width, mem.framebuffer.height);
+	// 	viewportTransformation(triangle, mem.framebuffer.width, mem.framebuffer.height);
 
 	// 	rasterize(mem.framebuffer, triangle, prg, cmd.backfaceCulling);
 	// }
