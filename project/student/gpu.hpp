@@ -8,6 +8,7 @@
 
 #include <student/fwd.hpp>
 #include <stdio.h>
+#include <iostream>
 struct Triangle
 {
     OutVertex points[3];
