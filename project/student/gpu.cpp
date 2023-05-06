@@ -145,93 +145,86 @@ void viewportTransformation(Triangle &triangle, uint32_t width, uint32_t height)
 {
 	for (int i = 0; i < 3; i++)
 	{
-		// triangle.points[i].gl_Position.x += 1.f;
-		// triangle.points[i].gl_Position.y += 1.f;
-
-		// triangle.points[i].gl_Position.x /= 2.f;
-		// triangle.points[i].gl_Position.y /= 2.f;
-
-		// triangle.points[i].gl_Position.x *= (float)width;
-		// triangle.points[i].gl_Position.y *= (float)height;
 		triangle.points[i].gl_Position.x = ((triangle.points[i].gl_Position.x * 0.5) + 0.5) * (float)width;
 		triangle.points[i].gl_Position.y = ((triangle.points[i].gl_Position.y * 0.5) + 0.5) * (float)height;
 	}
 }
+
 void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, ShaderInterface si, bool backFaceCulling)
 {
 	FragmentShader fs = prg.fragmentShader;
 
-	OutVertex trig_1 = triangle.points[0];
-	OutVertex trig_2 = triangle.points[1];
-	OutVertex trig_3 = triangle.points[2];
-
-	OutVertex max{};
-	max.gl_Position.x = glm::max(trig_1.gl_Position.x, trig_2.gl_Position.x);
-	max.gl_Position.x = glm::max(max.gl_Position.x, trig_3.gl_Position.x);
-
-	max.gl_Position.y = glm::max(trig_1.gl_Position.y, trig_2.gl_Position.y);
-	max.gl_Position.y = glm::max(max.gl_Position.y, trig_3.gl_Position.y);
-
-	OutVertex min{};
-	min.gl_Position.x = glm::min(trig_1.gl_Position.x, trig_2.gl_Position.x);
-	min.gl_Position.x = glm::min(min.gl_Position.x, trig_3.gl_Position.x);
-
-	min.gl_Position.y = glm::min(trig_1.gl_Position.y, trig_2.gl_Position.y);
-	min.gl_Position.y = glm::min(min.gl_Position.y, trig_3.gl_Position.y);
-
-	// Clipping
-	float maxFrameWidth = (float)frame.width - 0.5;
-	float maxFrameHeight = (float)frame.height - 0.5;
-
-	max.gl_Position.x = glm::min(max.gl_Position.x, maxFrameWidth);
-	max.gl_Position.y = glm::min(max.gl_Position.y, maxFrameHeight);
-
-	min.gl_Position.x = glm::max(min.gl_Position.x, 0.f);
-	min.gl_Position.y = glm::max(min.gl_Position.y, 0.f);
-
-	//(xi1 − xi0, yi1 − yi0) = (∆xi, ∆yi)
-	float dx1 = trig_2.gl_Position.x - trig_1.gl_Position.x;
-	float dx2 = trig_3.gl_Position.x - trig_2.gl_Position.x;
-	float dx3 = trig_1.gl_Position.x - trig_3.gl_Position.x;
-
-	float dy1 = trig_2.gl_Position.y - trig_1.gl_Position.y;
-	float dy2 = trig_3.gl_Position.y - trig_2.gl_Position.y;
-	float dy3 = trig_1.gl_Position.y - trig_3.gl_Position.y;
-
-	float E1 = ((min.gl_Position.y - trig_1.gl_Position.y) * dx1) - ((min.gl_Position.x - trig_1.gl_Position.x) * dy1);
-	float E2 = ((min.gl_Position.y - trig_2.gl_Position.y) * dx2) - ((min.gl_Position.x - trig_2.gl_Position.x) * dy2);
-	float E3 = ((min.gl_Position.y - trig_3.gl_Position.y) * dx3) - ((min.gl_Position.x - trig_3.gl_Position.x) * dy3);
+	OutVertex v[3] = {triangle.points[0], triangle.points[1], triangle.points[2]};
 
 	if (!backFaceCulling)
 	{
-		// pokud je vypnuty back face culling, zobrazují se i odvracene trojúhelníky
-		// prohodí se, co je uvnitř a venku
-		// printf("should have done smh...");
+		if (((v[1].gl_Position.x - v[0].gl_Position.x) * (v[2].gl_Position.y - v[0].gl_Position.y) -
+			 (v[2].gl_Position.x - v[0].gl_Position.x) * (v[1].gl_Position.y - v[0].gl_Position.y)) < 0.f)
+		{
+			OutVertex tmp;
+			tmp = v[1];
+			v[1] = v[2];
+			v[2] = tmp;
+		}
+	}
+
+	OutVertex max{};
+	max.gl_Position.x = 0.f;
+	max.gl_Position.y = 0.f;
+	for (int i = 0; i < 3; i++)
+	{
+		max.gl_Position.x = glm::max(max.gl_Position.x, v[i].gl_Position.x);
+		max.gl_Position.y = glm::max(max.gl_Position.y, v[i].gl_Position.y);
+	}
+
+	OutVertex min{};
+	min.gl_Position.x = frame.width;
+	min.gl_Position.y = frame.height;
+
+	for (int i = 0; i < 3; i++)
+	{
+		min.gl_Position.x = glm::min(min.gl_Position.x, v[i].gl_Position.x);
+		min.gl_Position.y = glm::min(min.gl_Position.y, v[i].gl_Position.y);
+	}
+
+	// Clipping
+	float maxFrameWidth = std::floor(frame.width);
+	float maxFrameHeight = std::floor(frame.height);
+
+	max.gl_Position.x = glm::min(max.gl_Position.x, maxFrameWidth - 0.5f);
+	max.gl_Position.y = glm::min(max.gl_Position.y, maxFrameHeight - 0.5f);
+
+	min.gl_Position.x = glm::max(min.gl_Position.x, 0.0f);
+	min.gl_Position.y = glm::max(min.gl_Position.y, 0.0f);
+
+	//(xi1 − xi0, yi1 − yi0) = (∆xi, ∆yi)
+	glm::vec2 delta[3];
+	for (int i = 0; i < 3; i++)
+	{
+		int j = (i + 1) % 3;
+		delta[i] = v[j].gl_Position - v[i].gl_Position;
 	}
 
 	for (uint32_t y = min.gl_Position.y; y <= max.gl_Position.y; ++y)
 	{
-		float t1 = E1;
-		float t2 = E2;
-		float t3 = E3;
 
 		for (uint32_t x = min.gl_Position.x; x <= max.gl_Position.x; ++x)
 		{
-			if (t1 >= 0 && t2 >= 0 & t3 >= 0)
+			float E[3];
+			float posX = x + 0.5f;
+			float posY = y + 0.5f;
+			for (int i = 0; i < 3; i++)
+				E[i] = ((posY - v[i].gl_Position.y) * delta[i].x - ((posX - v[i].gl_Position.x) * delta[i].y));
+
+			if (E[0] >= 0.f && E[1] >= 0.f && E[2] >= 0.f)
 			{
 				InFragment inFragment;
+				inFragment.gl_FragCoord.x = x + 0.5f;
+				inFragment.gl_FragCoord.y = y + 0.5f;
 				OutFragment outFragment;
 				fs(outFragment, inFragment, si);
 			}
-
-			t1 -= dy1;
-			t2 -= dy2;
-			t3 -= dy3;
 		}
-
-		E1 += dx1;
-		E2 += dx2;
-		E3 += dx3;
 	}
 }
 
@@ -294,7 +287,7 @@ glm::vec4 read_texture(Texture const &texture, glm::vec2 uv)
 	auto uv1 = glm::fract(uv);
 	auto uv2 = uv1 * glm::vec2(texture.width - 1, texture.height - 1) + 0.5f;
 	auto pix = glm::uvec2(uv2);
-	// auto t   = glm::fract(utrig_2.gl_Position);
+	// auto t   = glm::fract(u2.gl_Position);
 	glm::vec4 color = glm::vec4(0.f, 0.f, 0.f, 1.f);
 	for (uint32_t c = 0; c < texture.channels; ++c)
 		color[c] = texture.data[(pix.y * texture.width + pix.x) * texture.channels + c] / 255.f;
