@@ -150,9 +150,10 @@ void viewportTransformation(Triangle &triangle, uint32_t width, uint32_t height)
 	}
 }
 
-void barycentric(glm::vec3 pos, glm::vec3 a, glm::vec3 b, glm::vec3 c, glm::vec3 &bar)
+void barycentric(glm::vec2 pos, glm::vec4 a, glm::vec4 b, glm::vec4 c, glm::vec3 &bar)
 {
-	glm::vec2 v0 = b - a, v1 = c - a, v2 = pos - a;
+	glm::vec4 pos_4 = {pos.x, pos.y, 0, 0};
+	glm::vec2 v0 = b - a, v1 = c - a, v2 = pos_4 - a;
 
 	float d00 = glm::dot(v0, v0);
 	float d01 = glm::dot(v0, v1);
@@ -166,21 +167,60 @@ void barycentric(glm::vec3 pos, glm::vec3 a, glm::vec3 b, glm::vec3 c, glm::vec3
 	bar.x = 1.0f - bar.y - bar.z;
 }
 
-void fragmentAssembly(InFragment &in, glm::vec3 pos, glm::vec3 a, glm::vec3 b, glm::vec3 c)
+void interpolate(InFragment &in, Triangle t, glm::vec3 bar, AttributeType *vs2fs)
 {
+	glm::vec4 a = t.points[0].gl_Position, b = t.points[1].gl_Position, c = t.points[2].gl_Position;
+	Attribute *A = t.points[0].attributes, *B = t.points[1].attributes, *C = t.points[2].attributes;
+
+	in.gl_FragCoord.z = a.z * bar.x + b.z * bar.y + c.z * bar.z;
+
+	float s = (bar.x / a.w) + (bar.y / b.w) + (bar.z / c.w);
+
+	glm::vec3 perspectiveBary = {(bar.x / (a.w * s)), (bar.y / (b.w * s)), (bar.z / (c.w * s))};
+
+	for (uint32_t i = 0; i < maxAttributes; i++)
+	{
+		switch (vs2fs[i])
+		{
+		case AttributeType::FLOAT:
+			in.attributes[i].v1 = A[i].v1 * perspectiveBary.x + B[i].v1 * perspectiveBary.y + C[i].v1 * perspectiveBary.z;
+			break;
+
+		case AttributeType::VEC2:
+			in.attributes[i].v2 = A[i].v2 * perspectiveBary.x + B[i].v2 * perspectiveBary.y + C[i].v2 * perspectiveBary.z;
+			break;
+
+		case AttributeType::VEC3:
+			in.attributes[i].v3 = A[i].v3 * perspectiveBary.x + B[i].v3 * perspectiveBary.y + C[i].v3 * perspectiveBary.z;
+
+			break;
+
+		case AttributeType::VEC4:
+			in.attributes[i].v4 = A[i].v4 * perspectiveBary.x + B[i].v4 * perspectiveBary.y + C[i].v4 * perspectiveBary.z;
+
+			break;
+		}
+	}
+}
+
+void fragmentAssembly(InFragment &in, glm::vec2 pos, Triangle t, AttributeType *vs2fs)
+{
+	auto a = t.points[0], b = t.points[1], c = t.points[2];
+
 	in.gl_FragCoord.x = pos.x;
 	in.gl_FragCoord.y = pos.y;
 
 	glm::vec3 bar{0, 0, 0};
 
-	barycentric(pos, a, b, c, bar);
+	barycentric(pos, a.gl_Position, b.gl_Position, c.gl_Position, bar);
 
-	in.gl_FragCoord.z = a.z * bar.x + b.z * bar.y + c.z * bar.z;
+	interpolate(in, t, bar, vs2fs);
 }
 
-void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, ShaderInterface si, bool backFaceCulling)
+void rasterize(Frame &frame, Triangle const &triangle, Program &prg, ShaderInterface si, bool backFaceCulling)
 {
 	FragmentShader fs = prg.fragmentShader;
+	AttributeType *vs2fs = prg.vs2fs;
 
 	OutVertex v[3] = {triangle.points[0], triangle.points[1], triangle.points[2]};
 
@@ -240,7 +280,7 @@ void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, Shade
 		for (uint32_t x = min.gl_Position.x; x <= max.gl_Position.x; ++x)
 		{
 			float E[3];
-			glm::vec3 pos{x + 0.5f, y + 0.5f, 0};
+			glm::vec2 pos{x + 0.5f, y + 0.5f};
 
 			for (int i = 0; i < 3; i++)
 				E[i] = ((pos.y - v[i].gl_Position.y) * delta[i].x - ((pos.x - v[i].gl_Position.x) * delta[i].y));
@@ -249,7 +289,7 @@ void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, Shade
 			{
 				InFragment inFragment;
 
-				fragmentAssembly(inFragment, pos, v[0].gl_Position, v[1].gl_Position, v[2].gl_Position);
+				fragmentAssembly(inFragment, pos, triangle, vs2fs);
 
 				OutFragment outFragment;
 				fs(outFragment, inFragment, si);
