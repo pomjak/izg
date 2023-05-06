@@ -192,12 +192,10 @@ void interpolate(InFragment &in, Triangle t, glm::vec3 bar, AttributeType *vs2fs
 
 		case AttributeType::VEC3:
 			in.attributes[i].v3 = A[i].v3 * perspectiveBary.x + B[i].v3 * perspectiveBary.y + C[i].v3 * perspectiveBary.z;
-
 			break;
 
 		case AttributeType::VEC4:
 			in.attributes[i].v4 = A[i].v4 * perspectiveBary.x + B[i].v4 * perspectiveBary.y + C[i].v4 * perspectiveBary.z;
-
 			break;
 		}
 	}
@@ -215,6 +213,59 @@ void fragmentAssembly(InFragment &in, glm::vec2 pos, Triangle t, AttributeType *
 	barycentric(pos, a.gl_Position, b.gl_Position, c.gl_Position, bar);
 
 	interpolate(in, t, bar, vs2fs);
+}
+
+void clampColor(glm::vec4 &out)
+{
+	out = glm::min(glm::max(out, 0.f), 1.f);
+}
+
+void depthTest(Frame &frame, OutFragment &outF, InFragment &inF, glm::vec2 pos)
+{
+	uint32_t idx = (frame.width * std::floor(pos.y)) + std::floor(pos.x);
+	float InDepth = inF.gl_FragCoord.z;
+
+	if (frame.depth[idx] > InDepth)
+	{
+		frame.color[4 * idx] = (uint8_t)(outF.gl_FragColor.r * 255.f);
+		frame.color[4 * idx + 1] = (uint8_t)(outF.gl_FragColor.g * 255.f);
+		frame.color[4 * idx + 2] = (uint8_t)(outF.gl_FragColor.b * 255.f);
+		frame.color[4 * idx + 3] = (uint8_t)(outF.gl_FragColor.a * 255.f);
+
+		frame.depth[idx] = InDepth;
+	}
+}
+
+void blending(Frame &frame, OutFragment &outF, InFragment &inF, glm::vec2 pos)
+{
+	pos -= 0.5f;
+	uint32_t idx = frame.channels * (frame.width * std::floor(pos.y) + std::floor(pos.x));
+	float alpha = outF.gl_FragColor.w;
+	glm::vec4 tmp;
+
+	tmp.r = ((((float)frame.color[idx]) / 255.f) * (1.f - alpha)) + (outF.gl_FragColor.r * alpha);
+	tmp.g = ((((float)frame.color[idx + 1]) / 255.f) * (1.f - alpha)) + (outF.gl_FragColor.g * alpha);
+	tmp.b = ((((float)frame.color[idx + 2]) / 255.f) * (1.f - alpha)) + (outF.gl_FragColor.b * alpha);
+	tmp.a = 1.f;
+	clampColor(tmp);
+	frame.color[idx] = (uint8_t)(tmp.r * 255.f);
+	frame.color[idx + 1] = (uint8_t)(tmp.g * 255.f);
+	frame.color[idx + 2] = (uint8_t)(tmp.b * 255.f);
+	frame.color[idx + 3] = (uint8_t)(tmp.a * 255.f);
+}
+
+void perFragmentOperations(Frame &framebuffer, OutFragment &outF, InFragment &inF, glm::vec2 pos)
+{
+	clampColor(outF.gl_FragColor);
+
+	glm::vec4 fragColor = outF.gl_FragColor;
+	float alpha = fragColor.w;
+
+	if (alpha > 0.5)
+		depthTest(framebuffer, outF, inF, pos);
+
+	if (alpha != 1)
+		blending(framebuffer, outF, inF, pos);
 }
 
 void rasterize(Frame &frame, Triangle const &triangle, Program &prg, ShaderInterface si, bool backFaceCulling)
@@ -288,11 +339,13 @@ void rasterize(Frame &frame, Triangle const &triangle, Program &prg, ShaderInter
 			if (E[0] >= 0.f && E[1] >= 0.f && E[2] >= 0.f)
 			{
 				InFragment inFragment;
+				OutFragment outFragment;
 
 				fragmentAssembly(inFragment, pos, triangle, vs2fs);
 
-				OutFragment outFragment;
 				fs(outFragment, inFragment, si);
+
+				perFragmentOperations(frame, outFragment, inFragment, pos);
 			}
 		}
 	}
