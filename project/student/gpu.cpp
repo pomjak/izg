@@ -215,109 +215,93 @@ void fragmentAssembly(InFragment &in, glm::vec2 pos, Triangle t, AttributeType *
 	interpolate(in, t, bar, vs2fs);
 }
 
-void clampColor(glm::vec4 &out)
+void depthTest(Frame &frame, OutFragment &outF, InFragment &inF, glm::vec2 pos, glm::vec4 &rgb)
 {
-	out = glm::min(glm::max(out, 0.f), 1.f);
-}
+	pos -= glm::vec2(0.5f);
 
-void depthTest(Frame &frame, OutFragment &outF, InFragment &inF, glm::vec2 pos)
-{
-	uint32_t idx = (frame.width * std::floor(pos.y)) + std::floor(pos.x);
-	float InDepth = inF.gl_FragCoord.z;
+	const uint32_t idx = static_cast<uint32_t>((std::floor(pos.y) * frame.width) + std::floor(pos.x));
 
-	if (frame.depth[idx] > InDepth)
+	const float inDepth = inF.gl_FragCoord.z;
+	const float alpha = outF.gl_FragColor.w;
+
+	if (frame.depth[idx] > inDepth)
 	{
-		frame.color[4 * idx] = (uint8_t)(outF.gl_FragColor.r * 255.f);
-		frame.color[4 * idx + 1] = (uint8_t)(outF.gl_FragColor.g * 255.f);
-		frame.color[4 * idx + 2] = (uint8_t)(outF.gl_FragColor.b * 255.f);
-		frame.color[4 * idx + 3] = (uint8_t)(outF.gl_FragColor.a * 255.f);
-
-		frame.depth[idx] = InDepth;
+		frame.color[4 * idx] = glm::clamp(static_cast<uint8_t>(rgb.r * 255.f), uint8_t(0), uint8_t(255));
+		frame.color[4 * idx + 1] = glm::clamp(static_cast<uint8_t>(rgb.g * 255.f), uint8_t(0), uint8_t(255));
+		frame.color[4 * idx + 2] = glm::clamp(static_cast<uint8_t>(rgb.b * 255.f), uint8_t(0), uint8_t(255));
+		frame.color[4 * idx + 3] = glm::clamp(static_cast<uint8_t>(rgb.a * 255.f), uint8_t(0), uint8_t(255));
+		if (alpha > 0.5f)
+			frame.depth[idx] = inDepth;
 	}
 }
 
-void blending(Frame &frame, OutFragment &outF, InFragment &inF, glm::vec2 pos)
+void blending(Frame &frame, OutFragment &outF, InFragment &inF, glm::vec2 pos, glm::vec4 &rgb)
 {
-	pos -= 0.5f;
-	uint32_t idx = frame.channels * (frame.width * std::floor(pos.y) + std::floor(pos.x));
-	float alpha = outF.gl_FragColor.w;
-	glm::vec4 tmp;
+	pos -= glm::vec2(0.5f);
 
-	tmp.r = ((((float)frame.color[idx]) / 255.f) * (1.f - alpha)) + (outF.gl_FragColor.r * alpha);
-	tmp.g = ((((float)frame.color[idx + 1]) / 255.f) * (1.f - alpha)) + (outF.gl_FragColor.g * alpha);
-	tmp.b = ((((float)frame.color[idx + 2]) / 255.f) * (1.f - alpha)) + (outF.gl_FragColor.b * alpha);
-	tmp.a = 1.f;
-	clampColor(tmp);
-	frame.color[idx] = (uint8_t)(tmp.r * 255.f);
-	frame.color[idx + 1] = (uint8_t)(tmp.g * 255.f);
-	frame.color[idx + 2] = (uint8_t)(tmp.b * 255.f);
-	frame.color[idx + 3] = (uint8_t)(tmp.a * 255.f);
+	const uint32_t idx = frame.channels * (static_cast<uint32_t>(std::floor(pos.y)) * frame.width + static_cast<uint32_t>(std::floor(pos.x)));
+
+	const float alpha = outF.gl_FragColor.w;
+
+	const glm::vec3 blendedColor = glm::clamp(
+		glm::mix(
+			glm::vec3(frame.color[idx], frame.color[idx + 1], frame.color[idx + 2]) / 255.f,
+			glm::vec3(outF.gl_FragColor[0], outF.gl_FragColor[1], outF.gl_FragColor[2]), alpha),
+		glm::vec3(0.f), glm::vec3(1.f));
+
+	rgb = {blendedColor[0], blendedColor[1], blendedColor[2], 1.f};
+	rgb += 0.0001f;
 }
 
-void perFragmentOperations(Frame &framebuffer, OutFragment &outF, InFragment &inF, glm::vec2 pos)
+void perFragmentOperations(Frame &framebuffer, OutFragment &outF, InFragment &inF, const glm::vec2 &pos)
 {
-	clampColor(outF.gl_FragColor);
+	outF.gl_FragColor = glm::clamp(outF.gl_FragColor, glm::vec4(0.f), glm::vec4(1.f));
 
-	glm::vec4 fragColor = outF.gl_FragColor;
-	float alpha = fragColor.w;
+	const glm::vec4 color = outF.gl_FragColor;
+	const float alpha = color.w;
 
-	if (alpha > 0.5)
-		depthTest(framebuffer, outF, inF, pos);
+	glm::vec4 blendedColor = color;
+	if (alpha < 1.0f)
+		blending(framebuffer, outF, inF, pos, blendedColor);
 
-	if (alpha != 1)
-		blending(framebuffer, outF, inF, pos);
+	depthTest(framebuffer, outF, inF, pos, blendedColor);
 }
 
 void rasterize(Frame &frame, Triangle const &triangle, Program &prg, ShaderInterface si, bool backFaceCulling)
 {
 	FragmentShader fs = prg.fragmentShader;
 	AttributeType *vs2fs = prg.vs2fs;
-
 	OutVertex v[3] = {triangle.points[0], triangle.points[1], triangle.points[2]};
 
 	if (!backFaceCulling)
 	{
-		if (((v[1].gl_Position.x - v[0].gl_Position.x) * (v[2].gl_Position.y - v[0].gl_Position.y) -
-			 (v[2].gl_Position.x - v[0].gl_Position.x) * (v[1].gl_Position.y - v[0].gl_Position.y)) < 0.f)
-		{
-			OutVertex tmp;
-			tmp = v[1];
-			v[1] = v[2];
-			v[2] = tmp;
-		}
+		const float area = (v[1].gl_Position.x - v[0].gl_Position.x) * (v[2].gl_Position.y - v[0].gl_Position.y) -
+						   (v[2].gl_Position.x - v[0].gl_Position.x) * (v[1].gl_Position.y - v[0].gl_Position.y);
+		if (area < 0.0f)
+			std::swap(v[1], v[2]);
 	}
 
-	OutVertex max{};
-	max.gl_Position.x = 0.f;
-	max.gl_Position.y = 0.f;
+	glm::vec2 max, min;
+	max.x = max.y = 0.f;
+	min.x = frame.width;
+	min.y = frame.height;
 
 	for (int i = 0; i < 3; i++)
 	{
-		max.gl_Position.x = glm::max(max.gl_Position.x, v[i].gl_Position.x);
-		max.gl_Position.y = glm::max(max.gl_Position.y, v[i].gl_Position.y);
+		max.x = glm::max(max.x, v[i].gl_Position.x);
+		max.y = glm::max(max.y, v[i].gl_Position.y);
+		min.x = glm::min(min.x, v[i].gl_Position.x);
+		min.y = glm::min(min.y, v[i].gl_Position.y);
 	}
 
-	OutVertex min{};
-	min.gl_Position.x = frame.width;
-	min.gl_Position.y = frame.height;
-
-	for (int i = 0; i < 3; i++)
-	{
-		min.gl_Position.x = glm::min(min.gl_Position.x, v[i].gl_Position.x);
-		min.gl_Position.y = glm::min(min.gl_Position.y, v[i].gl_Position.y);
-	}
-
-	// Clipping
 	float maxFrameWidth = frame.width;
 	float maxFrameHeight = frame.height;
 
-	max.gl_Position.x = glm::min(max.gl_Position.x, maxFrameWidth - 0.5f);
-	max.gl_Position.y = glm::min(max.gl_Position.y, maxFrameHeight - 0.5f);
+	max.x = glm::min(max.x, maxFrameWidth - 0.5f);
+	max.y = glm::min(max.y, maxFrameHeight - 0.5f);
+	min.x = glm::max(min.x, 0.0f);
+	min.y = glm::max(min.y, 0.0f);
 
-	min.gl_Position.x = glm::max(min.gl_Position.x, 0.0f);
-	min.gl_Position.y = glm::max(min.gl_Position.y, 0.0f);
-
-	//(xi1 − xi0, yi1 − yi0) = (∆xi, ∆yi)
 	glm::vec2 delta[3];
 	for (int i = 0; i < 3; i++)
 	{
@@ -325,10 +309,9 @@ void rasterize(Frame &frame, Triangle const &triangle, Program &prg, ShaderInter
 		delta[i] = v[j].gl_Position - v[i].gl_Position;
 	}
 
-	for (uint32_t y = min.gl_Position.y; y <= max.gl_Position.y; ++y)
+	for (uint32_t y = min.y; y <= max.y; ++y)
 	{
-
-		for (uint32_t x = min.gl_Position.x; x <= max.gl_Position.x; ++x)
+		for (uint32_t x = min.x; x <= max.x; ++x)
 		{
 			float E[3];
 			glm::vec2 pos{x + 0.5f, y + 0.5f};
