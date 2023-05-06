@@ -150,6 +150,34 @@ void viewportTransformation(Triangle &triangle, uint32_t width, uint32_t height)
 	}
 }
 
+void barycentric(glm::vec3 pos, glm::vec3 a, glm::vec3 b, glm::vec3 c, glm::vec3 &bar)
+{
+	glm::vec2 v0 = b - a, v1 = c - a, v2 = pos - a;
+
+	float d00 = glm::dot(v0, v0);
+	float d01 = glm::dot(v0, v1);
+	float d11 = glm::dot(v1, v1);
+	float d20 = glm::dot(v2, v0);
+	float d21 = glm::dot(v2, v1);
+	float denom = d00 * d11 - d01 * d01;
+
+	bar.y = (d11 * d20 - d01 * d21) / denom;
+	bar.z = (d00 * d21 - d01 * d20) / denom;
+	bar.x = 1.0f - bar.y - bar.z;
+}
+
+void fragmentAssembly(InFragment &in, glm::vec3 pos, glm::vec3 a, glm::vec3 b, glm::vec3 c)
+{
+	in.gl_FragCoord.x = pos.x;
+	in.gl_FragCoord.y = pos.y;
+
+	glm::vec3 bar{0, 0, 0};
+
+	barycentric(pos, a, b, c, bar);
+
+	in.gl_FragCoord.z = a.z * bar.x + b.z * bar.y + c.z * bar.z;
+}
+
 void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, ShaderInterface si, bool backFaceCulling)
 {
 	FragmentShader fs = prg.fragmentShader;
@@ -171,6 +199,7 @@ void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, Shade
 	OutVertex max{};
 	max.gl_Position.x = 0.f;
 	max.gl_Position.y = 0.f;
+
 	for (int i = 0; i < 3; i++)
 	{
 		max.gl_Position.x = glm::max(max.gl_Position.x, v[i].gl_Position.x);
@@ -188,8 +217,8 @@ void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, Shade
 	}
 
 	// Clipping
-	float maxFrameWidth = std::floor(frame.width);
-	float maxFrameHeight = std::floor(frame.height);
+	float maxFrameWidth = frame.width;
+	float maxFrameHeight = frame.height;
 
 	max.gl_Position.x = glm::min(max.gl_Position.x, maxFrameWidth - 0.5f);
 	max.gl_Position.y = glm::min(max.gl_Position.y, maxFrameHeight - 0.5f);
@@ -211,16 +240,17 @@ void rasterize(Frame &frame, Triangle const &triangle, Program const &prg, Shade
 		for (uint32_t x = min.gl_Position.x; x <= max.gl_Position.x; ++x)
 		{
 			float E[3];
-			float posX = x + 0.5f;
-			float posY = y + 0.5f;
+			glm::vec3 pos{x + 0.5f, y + 0.5f, 0};
+
 			for (int i = 0; i < 3; i++)
-				E[i] = ((posY - v[i].gl_Position.y) * delta[i].x - ((posX - v[i].gl_Position.x) * delta[i].y));
+				E[i] = ((pos.y - v[i].gl_Position.y) * delta[i].x - ((pos.x - v[i].gl_Position.x) * delta[i].y));
 
 			if (E[0] >= 0.f && E[1] >= 0.f && E[2] >= 0.f)
 			{
 				InFragment inFragment;
-				inFragment.gl_FragCoord.x = x + 0.5f;
-				inFragment.gl_FragCoord.y = y + 0.5f;
+
+				fragmentAssembly(inFragment, pos, v[0].gl_Position, v[1].gl_Position, v[2].gl_Position);
+
 				OutFragment outFragment;
 				fs(outFragment, inFragment, si);
 			}
