@@ -11,7 +11,7 @@ void clear(GPUMemory &mem, ClearCommand cmd)
 {
 	if (cmd.clearColor)
 	{
-		for (uint64_t i = 0; i+4 < 4*(mem.framebuffer.height * mem.framebuffer.width); i += 4)
+		for (uint64_t i = 0; i + 4 < 4 * (mem.framebuffer.height * mem.framebuffer.width); i += 4)
 		{
 			mem.framebuffer.color[i] = static_cast<uint8_t>(cmd.color.r * 255.f);
 			mem.framebuffer.color[i + 1] = static_cast<uint8_t>(cmd.color.g * 255.f);
@@ -149,53 +149,67 @@ void viewportTransformation(Triangle &triangle, uint32_t width, uint32_t height)
 	}
 }
 
-void barycentric(glm::vec2 pos, glm::vec4 a, glm::vec4 b, glm::vec4 c, glm::vec3 &bar)
+void barycentric(const glm::vec2 &pos, const glm::vec4 &a, const glm::vec4 &b, const glm::vec4 &c, glm::vec3 &bar)
 {
 	glm::vec4 pos_4 = {pos.x, pos.y, 0, 0};
-	glm::vec2 v0 = b - a, v1 = c - a, v2 = pos_4 - a;
+	const glm::vec2 v0 = b - a;
+	const glm::vec2 v1 = c - a;
+	const glm::vec2 v2 = pos_4 - a;
 
-	float d00 = glm::dot(v0, v0);
-	float d01 = glm::dot(v0, v1);
-	float d11 = glm::dot(v1, v1);
-	float d20 = glm::dot(v2, v0);
-	float d21 = glm::dot(v2, v1);
-	float denom = d00 * d11 - d01 * d01;
+	const float d00 = glm::dot(v0, v0);
+	const float d01 = glm::dot(v0, v1);
+	const float d11 = glm::dot(v1, v1);
+	const float d20 = glm::dot(v2, v0);
+	const float d21 = glm::dot(v2, v1);
+	const float denom = d00 * d11 - d01 * d01;
 
 	bar.y = (d11 * d20 - d01 * d21) / denom;
 	bar.z = (d00 * d21 - d01 * d20) / denom;
 	bar.x = 1.0f - bar.y - bar.z;
 }
 
+template <typename T>
+T interpolateAttribute(const T &a, const T &b, const T &c, const glm::vec3 &bary)
+{
+	return a * bary.x + b * bary.y + c * bary.z;
+}
+
 void interpolate(InFragment &in, Triangle t, glm::vec3 bar, AttributeType *vs2fs)
 {
-	glm::vec4 a = t.points[0].gl_Position, b = t.points[1].gl_Position, c = t.points[2].gl_Position;
-	Attribute *A = t.points[0].attributes, *B = t.points[1].attributes, *C = t.points[2].attributes;
+	const glm::vec4 a = t.points[0].gl_Position;
+	const glm::vec4 b = t.points[1].gl_Position;
+	const glm::vec4 c = t.points[2].gl_Position;
+
+	const Attribute *const A = t.points[0].attributes;
+	const Attribute *const B = t.points[1].attributes;
+	const Attribute *const C = t.points[2].attributes;
 
 	in.gl_FragCoord.z = a.z * bar.x + b.z * bar.y + c.z * bar.z;
 
-	float s = (bar.x / a.w) + (bar.y / b.w) + (bar.z / c.w);
+	const float s = (bar.x / a.w) + (bar.y / b.w) + (bar.z / c.w);
 
-	glm::vec3 perspectiveBary = {(bar.x / (a.w * s)), (bar.y / (b.w * s)), (bar.z / (c.w * s))};
+	const glm::vec3 perspectiveBary = {(bar.x / (a.w * s)), (bar.y / (b.w * s)), (bar.z / (c.w * s))};
 
 	for (uint32_t i = 0; i < maxAttributes; i++)
 	{
 		switch (vs2fs[i])
 		{
 		case AttributeType::FLOAT:
-			in.attributes[i].v1 = A[i].v1 * perspectiveBary.x + B[i].v1 * perspectiveBary.y + C[i].v1 * perspectiveBary.z;
+			in.attributes[i].v1 = interpolateAttribute(A[i].v1, B[i].v1, C[i].v1, perspectiveBary);
 			break;
 
 		case AttributeType::VEC2:
-			in.attributes[i].v2 = A[i].v2 * perspectiveBary.x + B[i].v2 * perspectiveBary.y + C[i].v2 * perspectiveBary.z;
+			in.attributes[i].v2 = interpolateAttribute(A[i].v2, B[i].v2, C[i].v2, perspectiveBary);
 			break;
 
 		case AttributeType::VEC3:
-			in.attributes[i].v3 = A[i].v3 * perspectiveBary.x + B[i].v3 * perspectiveBary.y + C[i].v3 * perspectiveBary.z;
+			in.attributes[i].v3 = interpolateAttribute(A[i].v3, B[i].v3, C[i].v3, perspectiveBary);
 			break;
 
 		case AttributeType::VEC4:
-			in.attributes[i].v4 = A[i].v4 * perspectiveBary.x + B[i].v4 * perspectiveBary.y + C[i].v4 * perspectiveBary.z;
+			in.attributes[i].v4 = interpolateAttribute(A[i].v4, B[i].v4, C[i].v4, perspectiveBary);
 			break;
+
 		case AttributeType::UINT:
 			in.attributes[i].u1 = A[i].u1;
 			break;
@@ -246,6 +260,7 @@ void perFragmentOperations(Frame const &framebuffer, OutFragment &outF, InFragme
 					  static_cast<float>(framebuffer.color[(4 * idx) + 2] / 255.f),
 					  static_cast<float>(framebuffer.color[(4 * idx) + 3] / 255.f)),
 			glm::vec4(color.r, color.g, color.b, color.a), alpha);
+
 		color += glm::vec4(0.0001f);
 
 		color = glm::clamp(color, glm::vec4(0.0f), glm::vec4(1.0f));
